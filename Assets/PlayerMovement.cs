@@ -6,79 +6,104 @@ public class PlayerMovement : MonoBehaviour
 {
 	public float maxSpeed;
 	public float jumpForce;
+	public float jumpPushForce = 10f;
 	public bool airControl;
-	public LayerMask whatIsGround;
-	public LayerMask whatIsWall;
+	public LayerMask collisions; 
+
 	private Rigidbody2D rigidBody;
 	private bool jump;
 	private bool doubleJump;
-	private Transform groundCheck;
-	private Transform wallCheck;
+	private bool wallJump;
 	private bool isGround;
 	private bool isWall;
+	private bool isLeft;
+
 
 	const float groundedRadius = .2f;
 
 	void Start ()
 	{
 		rigidBody = GetComponent<Rigidbody2D> ();
-		groundCheck = transform.Find ("GroundCheck");
-		wallCheck = transform.Find ("WallCheck");
-	}
-
-	void OnDrawGizmos ()
-	{
-		var forward = transform.TransformDirection (Vector3.up) * 10;
-		Gizmos.color = Color.green;
-		Gizmos.DrawLine (transform.position, forward);
 	}
 
 	void Update ()
 	{
-		
 		if (!jump) {
 			jump = CrossPlatformInputManager.GetButtonDown ("Jump");
 		}	
-
-
 	}
 
 	void FixedUpdate ()
 	{
 
-		checkIsGround ();	
+		checkPlayerSurroundings ();	
 
 		float move = CrossPlatformInputManager.GetAxis ("Horizontal");
 
 		if (isGround || airControl) {
-			
-
 			rigidBody.velocity = new Vector2 (move * maxSpeed, rigidBody.velocity.y);
 		}
 
-		if (isGround && jump) {
-			rigidBody.AddForce (new Vector2 (0f, jumpForce));
-			doubleJump = true;
-		} else if (isWall && jump) {
-			
-		} else if (jump && doubleJump) {
-			rigidBody.AddForce (new Vector2 (0f, jumpForce));
-			doubleJump = false;
+
+		if (jump) {
+			bool canJump = false;
+			float mJumpForce = jumpForce;
+
+			if (isGround) {
+				doubleJump = true;
+				canJump = true;
+				wallJump = true;
+			}else if (doubleJump) {
+				doubleJump = false;
+				canJump = true;
+			}else if (wallJump && isWall) {
+				wallJump = false;
+				canJump = true;
+				mJumpForce = jumpForce * 1.5f;
+			}
+
+			if (canJump) {
+				rigidBody.AddForce (new Vector2 (jumpPushForce, mJumpForce));
+			}
+		} 
+
+		if (move > 0 && isLeft) {
+			flip ();
+		} else if (move < 0 && !isLeft) {
+			flip ();
 		}
 
 		jump = false;
 	}
 
-	private void checkIsGround ()
+	private void checkPlayerSurroundings ()
 	{
 		isGround = false;
+		isWall = false;
 
-		Collider2D[] colliders = Physics2D.OverlapCircleAll (groundCheck.position, groundedRadius, whatIsGround);
-		for (int i = 0; i < colliders.Length; i++) {
-			
-			if (colliders [i].gameObject != gameObject)
-				isGround = true;
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 10f, collisions);
+		if (hit.collider != null && hit.distance< 0.7f) {
+			isGround = true;
 		}
 
+		Vector2 direction = (isLeft) ? Vector2.left : Vector2.right;
+
+		hit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
+
+		if ( hit.collider != null && hit.distance < 0.8f){
+
+			isWall = true;
+		}
+
+	}
+
+	private void flip(){
+		// Switch the way the player is labelled as facing
+		isLeft = !isLeft;
+
+		//Multiply the player's x local cale by -1
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 }
