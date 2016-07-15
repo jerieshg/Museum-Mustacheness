@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	public float maxSpeed;
 	public float jumpForce;
 	public float jumpPushForce = 10f;
+	public float wallFriction = 1.1f;
 	public bool airControl;
 	public LayerMask collisions; 
 
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool isLeft;
 
 
-	const float groundedRadius = .2f;
+	const float distanceToCollision = 0.9f;
 
 	void Start ()
 	{
@@ -41,9 +42,9 @@ public class PlayerMovement : MonoBehaviour
 		float move = CrossPlatformInputManager.GetAxis ("Horizontal");
 
 		if (isGround || airControl) {
-			rigidBody.velocity = new Vector2 (move * maxSpeed, rigidBody.velocity.y);
+			float fallSpeed = (!isWall) ? rigidBody.velocity.y : rigidBody.velocity.y / wallFriction;
+			rigidBody.velocity = new Vector2 (move * maxSpeed, fallSpeed);
 		}
-
 
 		if (jump) {
 			bool canJump = false;
@@ -59,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 			}else if (wallJump && isWall) {
 				wallJump = false;
 				canJump = true;
-				mJumpForce = jumpForce * 1.5f;
+				mJumpForce = jumpForce * 1.8f;
 			}
 
 			if (canJump) {
@@ -81,8 +82,8 @@ public class PlayerMovement : MonoBehaviour
 		isGround = false;
 		isWall = false;
 
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 10f, collisions);
-		if (hit.collider != null && hit.distance< 0.7f) {
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 2f, collisions);
+		if (hit.collider != null && hit.distance< distanceToCollision) {
 			isGround = true;
 		}
 
@@ -90,11 +91,9 @@ public class PlayerMovement : MonoBehaviour
 
 		hit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
 
-		if ( hit.collider != null && hit.distance < 0.8f){
-
+		if ( hit.collider != null && hit.distance < distanceToCollision){
 			isWall = true;
 		}
-
 	}
 
 	private void flip(){
