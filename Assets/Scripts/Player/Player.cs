@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	//Player Attributes here
+
 	// Use this for initialization
 	void Start () {
 	
