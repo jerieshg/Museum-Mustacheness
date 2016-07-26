@@ -35,7 +35,7 @@ public class AlertState : IEnemyState {
 
 	private void Search(){
 		enemy.meshRenderer.material.color = Color.yellow;
-		enemy.rigidBody.velocity = new Vector2 ();//stops the player
+		enemy.transform.position = new Vector2 (enemy.transform.position.x,enemy.transform.position.y);//stops the player
 		enemy.transform.Rotate (0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
 		searchTimer += Time.deltaTime;
 

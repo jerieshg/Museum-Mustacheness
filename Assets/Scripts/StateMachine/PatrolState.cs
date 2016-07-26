@@ -47,8 +47,13 @@ public class PatrolState : IEnemyState {
 	private void Patrol(){
 		enemy.meshRenderer.material.color = Color.green;
 
-		Vector2 direction = (enemy.isGoingLeft) ? Vector2.left : Vector2.right;
-		enemy.move (direction, enemy.patrolSpeed, enemy.maxPatrolSpeed, false);
+		if (enemy.exceededDistance) {
+			Vector3 scale = enemy.transform.localScale;
+			scale.x *= -1;
+			enemy.transform.localScale = scale;
+		}
+
+		enemy.move (enemy.patrolSpeed);
 
 	}
 }

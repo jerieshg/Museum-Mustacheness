@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using System;
 
 public class StatePatternEnemy : MonoBehaviour {
 	
 	public float patrolSpeed = 4f;
-	public float maxPatrolSpeed = 3f;
 	public float chaseSpeed = 6f;
-	public float maxChaseSpeed = 5f;
 	public float jumpForce = 40f;
 	public float searchingTurnSpeed = 120f;
 	public float searchingDuration = 4f;
 	public float sightRange = 20f;
+	public float maxDistance = 10f;
 	public Transform eyes;
 	public Vector3 offset = new Vector3(0, 0.5f, 0);
 	public LayerMask collisions; 
@@ -25,11 +25,12 @@ public class StatePatternEnemy : MonoBehaviour {
 	[HideInInspector] public PatrolState patrolState;
 	[HideInInspector] public Rigidbody2D rigidBody;
 	[HideInInspector] public MeshRenderer meshRenderer;
+	[HideInInspector] public bool exceededDistance;
 
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
 	private bool grounded;
-
+	private Vector3 startPosition;
 
 
 	void Awake(){
@@ -37,26 +38,26 @@ public class StatePatternEnemy : MonoBehaviour {
 		alertState = new AlertState (this);
 		patrolState = new PatrolState (this);
 		rigidBody = GetComponent<Rigidbody2D> ();
+		startPosition = transform.position;
 		meshRenderer = GetComponent<MeshRenderer> ();//debug
 	}
 
-	// Use this for initialization
 	void Start () {
 		currentState = patrolState;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		checkEnemySurroundings ();
-		float move = rigidBody.velocity.x;
+//		float move = rigidBody.velocity.x;
 
-		if (move > 0 && isGoingLeft) {
-			flip ();
-		} else if (move < 0 && !isGoingLeft) {
-			flip ();
-		}
+		exceededDistance = (Vector3.Distance (startPosition, transform.position) > maxDistance);
 
 		currentState.UpdateState ();
+
+//		if (move > 0 && isGoingLeft) {
+//			flip ();
+//		} else if (move < 0 && !isGoingLeft) {
+//			flip ();
+//		}
 
 		if (wallDetected) {
 			if (grounded) {
@@ -69,17 +70,17 @@ public class StatePatternEnemy : MonoBehaviour {
 		currentState.OnTriggerEnter2D (other);
 	}
 
-	public void move(Vector2 direction, float speed, float maxSpeed, bool xAxisOnly){
-		if (Mathf.Abs (rigidBody.velocity.x) < maxSpeed) {
-			if (xAxisOnly) {
-				rigidBody.velocity = new Vector2(rigidBody.velocity.x + direction.x * speed * Time.deltaTime, rigidBody.velocity.y);
-			} else {
-				rigidBody.velocity += direction * speed * Time.deltaTime;
-			}
-
-		}
+	public void move(float speed){
+		transform.Translate (speed * Time.fixedDeltaTime * transform.localScale.x, 0, 0);
 	}
 
+	public void chase(Transform target, float speed){
+		transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), speed * Time.deltaTime);
+	}
+
+	/**
+	 * Used to manage the A.I Jumping 
+	 **/
 	private void checkEnemySurroundings ()	{
 		grounded = false;
 		wallDetected = false;
