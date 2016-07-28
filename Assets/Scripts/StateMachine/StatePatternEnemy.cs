@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEditor;
 using System;
+using System.Runtime.InteropServices;
 
 public class StatePatternEnemy : MonoBehaviour {
 	
@@ -16,7 +17,6 @@ public class StatePatternEnemy : MonoBehaviour {
 	public Vector3 offset = new Vector3(0, 0.5f, 0);
 	public LayerMask collisions; 
 
-
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public bool isGoingLeft;
 	[HideInInspector] public IEnemyState currentState;
@@ -26,11 +26,13 @@ public class StatePatternEnemy : MonoBehaviour {
 	[HideInInspector] public Rigidbody2D rigidBody;
 	[HideInInspector] public MeshRenderer meshRenderer;
 	[HideInInspector] public bool exceededDistance;
+	[HideInInspector] public bool resettingPosition;
+	[HideInInspector] public Vector3 startPosition;
 
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
 	private bool grounded;
-	private Vector3 startPosition;
+
 
 
 	void Awake(){
@@ -47,17 +49,15 @@ public class StatePatternEnemy : MonoBehaviour {
 	}
 	
 	void Update () {
-//		float move = rigidBody.velocity.x;
-
-		exceededDistance = (Vector3.Distance (startPosition, transform.position) > maxDistance);
-
-		currentState.UpdateState ();
-
-//		if (move > 0 && isGoingLeft) {
-//			flip ();
-//		} else if (move < 0 && !isGoingLeft) {
-//			flip ();
-//		}
+		exceededDistance = (retrieveDistanceFromStartPosition() > maxDistance);
+	
+		if (!resettingPosition) {
+			currentState.UpdateState ();
+		} else {
+			
+			move (startPosition, patrolSpeed);
+			resettingPosition = (retrieveDistanceFromStartPosition() > 0.3f);
+		}
 
 		if (wallDetected) {
 			if (grounded) {
@@ -74,8 +74,14 @@ public class StatePatternEnemy : MonoBehaviour {
 		transform.Translate (speed * Time.fixedDeltaTime * transform.localScale.x, 0, 0);
 	}
 
-	public void chase(Transform target, float speed){
-		transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), speed * Time.deltaTime);
+	public void move(Vector3 target, float speed){
+		transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), speed * Time.deltaTime);
+	}
+
+	public void flip(){
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
+		transform.localScale = scale;
 	}
 
 	/**
@@ -99,13 +105,8 @@ public class StatePatternEnemy : MonoBehaviour {
 		}
 	}
 
-	private void flip(){
-		// Switch the way the player is labelled as facing
-		isGoingLeft = !isGoingLeft;
-
-		//Multiply the player's x local cale by -1
-		Vector3 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
+	private float retrieveDistanceFromStartPosition(){
+		return Vector3.Distance (startPosition, transform.position);
 	}
+
 }

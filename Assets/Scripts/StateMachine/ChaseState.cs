@@ -33,7 +33,8 @@ public class ChaseState : IEnemyState {
 	private void Chase(){
 		enemy.transform.rotation = new Quaternion ();//temporal
 		enemy.meshRenderer.material.color = Color.red;
-		enemy.chase (enemy.chaseTarget, enemy.chaseSpeed);
+		enemy.resettingPosition = enemy.exceededDistance;
+		enemy.move (enemy.chaseTarget.position, enemy.chaseSpeed);
 	}
 
 	private void Look(){

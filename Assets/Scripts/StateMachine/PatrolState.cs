@@ -16,7 +16,6 @@ public class PatrolState : IEnemyState {
 	}
 
 	public void OnTriggerEnter2D (Collider2D other){
-
 		if (other.gameObject.CompareTag ("Player")) {
 			ToAlertState ();
 		}
@@ -48,12 +47,9 @@ public class PatrolState : IEnemyState {
 		enemy.meshRenderer.material.color = Color.green;
 
 		if (enemy.exceededDistance) {
-			Vector3 scale = enemy.transform.localScale;
-			scale.x *= -1;
-			enemy.transform.localScale = scale;
+			enemy.flip ();
 		}
 
 		enemy.move (enemy.patrolSpeed);
-
 	}
 }
