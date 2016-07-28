@@ -13,10 +13,10 @@ public class PlayerCastController : MonoBehaviour {
 	}
 	
 	void Update () {
-		attack ();
+		cast ();
 	}
 
-	private void attack()
+	private void cast()
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
