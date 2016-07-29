@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	//Controllers
 	private PlayerAnimationController playerAnimationController;
 	private PlayerMovementController playerMovementController;
+	private PlayerCastController playerCastController;
 
 	//Movement
 	public float maxSpeed;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody2D> ();
 		playerAnimationController = GetComponent<PlayerAnimationController>();
+		playerCastController = GetComponent<PlayerCastController> ();
 		playerMovementController = new PlayerMovementController(this);
 
 	}
@@ -58,5 +60,6 @@ public class PlayerController : MonoBehaviour {
 	private void handleAnimations(){
 		playerAnimationController.walk = playerMovementController.walking;
 		playerAnimationController.jump = !playerMovementController.isGround;
+		playerAnimationController.throwMarker = playerCastController.throwing;
 	}
 }

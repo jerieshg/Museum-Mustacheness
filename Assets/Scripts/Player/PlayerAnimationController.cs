@@ -9,7 +9,7 @@ public class PlayerAnimationController : MonoBehaviour {
 	public bool walk = false;
 	public bool jump = false;
 	public bool attack = false;
-	public bool turnSprite = true;
+	public bool throwMarker = false;
 	public bool dead = false;
 
 	void Start()
@@ -23,6 +23,7 @@ public class PlayerAnimationController : MonoBehaviour {
 		animateJump();
 		animateAttack();
 		animateDead();
+		animateThrowMarker ();
 	}
 
 	void animateDead()
@@ -43,6 +44,10 @@ public class PlayerAnimationController : MonoBehaviour {
 	void animateWalk()
 	{
 		playerAnimator.SetBool("walk",walk);
+	}
+
+	void animateThrowMarker(){
+		playerAnimator.SetBool ("throw", throwMarker);
 	}
 
 }

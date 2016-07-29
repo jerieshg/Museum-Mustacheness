@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerCastController : MonoBehaviour {
 
 	public GameObject playerCastPosition;
 	public GameObject marker;
-
-	private bool canCast;
+	public bool throwing = false;
 
 	void Start () {
 	
 	}
 	
 	void Update () {
-		cast ();
+		if (Input.GetButtonDown ("Fire1")) {
+			throwing = true;
+		}
 	}
 
-	private void cast()
-	{
-		if (Input.GetButtonDown("Fire1"))
-		{
+	private void throwMarker(){
 			marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
 			Instantiate (marker,playerCastPosition.transform.position,playerCastPosition.transform.rotation);
-		}
+			throwing = false;
 	}
 }
