@@ -7,10 +7,6 @@ public class PlayerCastController : MonoBehaviour {
 	public GameObject playerCastPosition;
 	public GameObject marker;
 	public bool throwing = false;
-
-	void Start () {
-	
-	}
 	
 	void Update () {
 		if (Input.GetButtonDown ("Fire1")) {
@@ -18,9 +14,14 @@ public class PlayerCastController : MonoBehaviour {
 		}
 	}
 
-	private void throwMarker(){
-			marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
-			Instantiate (marker,playerCastPosition.transform.position,playerCastPosition.transform.rotation);
-			throwing = false;
+	private void throwMarker()
+    {
+		marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
+		Instantiate (marker,playerCastPosition.transform.position,playerCastPosition.transform.rotation);
 	}
+
+    private void cancelThrow()
+    {
+        throwing = false;
+    }
 }
