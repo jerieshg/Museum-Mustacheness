@@ -17,10 +17,8 @@ public class PlayerAnimationController : MonoBehaviour {
 		playerAnimator = GetComponent<Animator>();
 	}
 
-	
 	void Update()
 	{
-		spriteTurnCheck();
 		animateWalk();
 		animateJump();
 		animateAttack();
@@ -47,18 +45,4 @@ public class PlayerAnimationController : MonoBehaviour {
 		playerAnimator.SetBool("walk",walk);
 	}
 
-	void spriteTurnCheck()
-	{
-//		if(InputButtonManager.inputButtonManager.onAction && turnSprite)
-//		{
-//			if(Input.GetKey(InputButtonManager.inputButtonManager.moveLeft))
-//			{
-//				transform.localScale = new Vector3(-1,1,1);
-//			} 
-//			else if(Input.GetKey(InputButtonManager.inputButtonManager.moveRight))
-//			{
-//				transform.localScale = new Vector3(1,1,1);
-//			}
-//		}
-	}
 }
