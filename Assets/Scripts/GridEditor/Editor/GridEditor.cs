@@ -8,7 +8,6 @@ public class GridEditor : Editor
 {
     Grid grid;
 
-    private float gridSize = 50f;
     private int tileIndex = 0;
 
     private bool canDraw = false;
@@ -52,23 +51,21 @@ public class GridEditor : Editor
 
     public override void OnInspectorGUI()
     {
+
         GUILayout.BeginVertical();
 
         GUILayout.BeginVertical("box");
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Grid Dimension");
-        grid.width = EditorGUILayout.FloatField(grid.width);
-        GUILayout.Label("X");
-        grid.height = EditorGUILayout.FloatField(grid.height);
+        GUILayout.BeginHorizontal("box");
+        GUILayout.Label("Grid Dimension | Y: " + grid.width + " X: " + grid.height);
         GUILayout.EndHorizontal();
 
         grid.gridColor = EditorGUILayout.ColorField("Grid Color", grid.gridColor);
         grid.drawGrid = EditorGUILayout.Toggle("Draw Grid",grid.drawGrid);
-        gridSize = EditorGUILayout.FloatField("Grid Size", gridSize);
+        grid.gridSizeX = EditorGUILayout.FloatField("Grid Size", grid.gridSizeX);
+        grid.gridSizeY = grid.gridSizeX;
+        
         EditorGUILayout.HelpBox("Grid is drawned from origin.",MessageType.Info);
-        grid.gridSizeX = gridSize;
-        grid.gridSizeY = gridSize;
 
         GUILayout.EndVertical();
 
@@ -118,7 +115,7 @@ public class GridEditor : Editor
         }
         GUILayout.EndVertical();
 
-        if (grid.gridLayers.Count != 0)
+        if (grid.gridLayers.Count > 0)
         {
             for (int a = 0; a < grid.gridLayers.Count; a++)
             {
@@ -136,6 +133,12 @@ public class GridEditor : Editor
                 {
                     removeLayer(grid.gridLayers[a]);
                 }
+
+                if (GUILayout.Button(setHideShowButtonText(grid.gridLayers[a])))
+                {
+                    hideShowLayer(grid.gridLayers[a]);
+                }
+
                 GUILayout.EndHorizontal();
 
                 GUILayout.EndVertical();
@@ -149,12 +152,33 @@ public class GridEditor : Editor
         GUILayout.EndVertical();
     }
 
+    //Set the button text depeding if the layer is active or not
+    string setHideShowButtonText(GameObject layer)
+    {
+        if (layer.gameObject.activeSelf == true)
+        {
+            return "Hide";
+        }
+        else
+        {
+            return "Show";
+        }
+    }
+
+    //Hides a layer using its gameobject
+    void hideShowLayer(GameObject layer)
+    {
+        layer.gameObject.SetActive(!layer.gameObject.activeSelf);
+    }
+
+    //Removes a layer by removing the gameobject associated with it
     void removeLayer(GameObject layer)
     {
         grid.gridLayers.Remove(layer);
         DestroyImmediate(layer);
     }
 
+    //Makes current selected layer from a gameobject
     void selectLayer(GameObject layer)
     {
         grid.selectedLayer = layer.transform;
@@ -174,6 +198,7 @@ public class GridEditor : Editor
         }
     }
 
+    //Draws the tile chooser of gameobjects from tileset array
     void drawTileChooser()
     {
         GUILayout.BeginVertical("box");
@@ -189,7 +214,7 @@ public class GridEditor : Editor
                     tileTextures[a] = textureFromSprite(grid.tileSet.Prefabs[a].GetComponent<SpriteRenderer>().sprite);
                 }
 
-                tileIndex = GUILayout.SelectionGrid(tileIndex, tileTextures, 10);
+                tileIndex = GUILayout.SelectionGrid(tileIndex, tileTextures, 10, GUILayout.ExpandWidth(true));
                 grid.selectedPrefab = grid.tileSet.Prefabs[tileIndex];
 
                 float newWidth = grid.selectedPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -235,11 +260,6 @@ public class GridEditor : Editor
         Vector3 mousePos = ray.origin;
         Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2f, 0f);
 
-        if (canDraw)
-        {
-
-        }
-
         switch (Event.current.GetTypeForControl(controllId))
         {
             case EventType.MouseDown:
@@ -260,7 +280,6 @@ public class GridEditor : Editor
                         if (grid.selectedLayer.transform.childCount > 0 && getTransformFromPosition(aligned) != null)
                         {
                             Debug.Log("<color=red>Can't place tile, there is one already in that position.</color>");
-                            Debug.Log("TEST");
                         }
                         else
                         {
