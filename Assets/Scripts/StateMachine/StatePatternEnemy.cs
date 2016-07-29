@@ -13,9 +13,11 @@ public class StatePatternEnemy : MonoBehaviour {
 	public float searchingDuration = 4f;
 	public float sightRange = 20f;
 	public float maxDistance = 10f;
+	public float stoppingDistance = 0.4f;
 	public Transform eyes;
 	public Vector3 offset = new Vector3(0, 0.5f, 0);
 	public LayerMask collisions; 
+	public Transform[] waypoints;
 
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public bool isGoingLeft;
@@ -32,8 +34,6 @@ public class StatePatternEnemy : MonoBehaviour {
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
 	private bool grounded;
-
-
 
 	void Awake(){
 		chaseState = new ChaseState (this);
@@ -54,9 +54,8 @@ public class StatePatternEnemy : MonoBehaviour {
 		if (!resettingPosition) {
 			currentState.UpdateState ();
 		} else {
-			
 			move (startPosition, patrolSpeed);
-			resettingPosition = (retrieveDistanceFromStartPosition() > 0.3f);
+			resettingPosition = (retrieveDistanceFromStartPosition() > stoppingDistance);
 		}
 
 		if (wallDetected) {
@@ -79,6 +78,8 @@ public class StatePatternEnemy : MonoBehaviour {
 	}
 
 	public void flip(){
+		isGoingLeft = !isGoingLeft;
+
 		Vector3 scale = transform.localScale;
 		scale.x *= -1;
 		transform.localScale = scale;

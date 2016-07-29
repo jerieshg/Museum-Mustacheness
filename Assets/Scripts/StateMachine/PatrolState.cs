@@ -46,10 +46,14 @@ public class PatrolState : IEnemyState {
 	private void Patrol(){
 		enemy.meshRenderer.material.color = Color.green;
 
-		if (enemy.exceededDistance) {
+		Vector3 destination = enemy.waypoints [nextWaypoint].position;
+		enemy.move (destination, enemy.patrolSpeed);
+
+		float remainingDistance = Vector3.Distance (destination, enemy.transform.position);
+
+		if (remainingDistance <= enemy.stoppingDistance) {
+			nextWaypoint =(nextWaypoint + 1) % enemy.waypoints.Length;
 			enemy.flip ();
 		}
-
-		enemy.move (enemy.patrolSpeed);
 	}
 }
