@@ -57,6 +57,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void handleAnimations(){
 		playerAnimationController.walk = playerMovementController.walking;
-		playerAnimationController.jump = playerMovementController.jump;
+		playerAnimationController.jump = !playerMovementController.isGround;
 	}
 }
