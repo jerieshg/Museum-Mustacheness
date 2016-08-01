@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
 	//Controllers
 	private PlayerAnimationController playerAnimationController;
@@ -19,19 +20,21 @@ public class PlayerController : MonoBehaviour {
 	private float attackTimeCd = 0f;
 	private bool canAttack;
 
-	void Start () {
+	void Start ()
+	{
 		rigidBody = GetComponent<Rigidbody2D> ();
-		playerAnimationController = GetComponent<PlayerAnimationController>();
+		playerAnimationController = GetComponent<PlayerAnimationController> ();
 		playerCastController = GetComponent<PlayerCastController> ();
-		playerMovementController = new PlayerMovementController(this);
-
+		playerMovementController = new PlayerMovementController (this);
 	}
-	
-	void Update () {
+
+	void Update ()
+	{
 		playerMovementController.checkJump ();
 	}
 
-	void FixedUpdate(){
+	void FixedUpdate ()
+	{
 		checkPlayerSurroundings ();
 		handleAnimations ();
 		playerMovementController.move ();
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
 		RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 2f, collisions);
 	
-		if (hit.collider != null && hit.distance< playerMovementController.distanceToCollision) {
+		if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
 			playerMovementController.isGround = true;
 		}
 
@@ -52,12 +55,13 @@ public class PlayerController : MonoBehaviour {
 
 		hit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
 
-		if ( hit.collider != null && hit.distance < playerMovementController.distanceToCollision){
+		if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
 			playerMovementController.isWall = true;
 		}
 	}
 
-	private void handleAnimations(){
+	private void handleAnimations ()
+	{
 		playerAnimationController.walk = playerMovementController.walking;
 		playerAnimationController.jump = !playerMovementController.isGround;
 		playerAnimationController.throwMarker = playerCastController.throwing;

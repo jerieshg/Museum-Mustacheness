@@ -14,7 +14,7 @@ public class PlayerMovementController
 	public bool canJump;
 	public bool canDoubleJump;
 	public bool wallJump;
- 	public bool isGround;
+	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
 	public float distanceToCollision = 0.9f;
@@ -26,7 +26,8 @@ public class PlayerMovementController
 		this.player = player;	
 	}
 
-	public void move(){
+	public void move ()
+	{
 		float move = CrossPlatformInputManager.GetAxis ("Horizontal");
 
 		walking = Mathf.Abs (move) > 0;
@@ -45,16 +46,17 @@ public class PlayerMovementController
 				canDoubleJump = true;
 				jump = true;
 				wallJump = true;
-			}else if (canDoubleJump) {
+			} else if (canDoubleJump) {
 				canDoubleJump = false;
 				jump = true;
-			}else if (wallJump && isWall) {
+			} else if (wallJump && isWall) {
 				wallJump = false;
 				jump = true;
 				mJumpForce = player.jumpForce * 1.8f;
 			}
 
 			if (jump) {
+				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
 				player.rigidBody.AddForce (new Vector2 (player.jumpPushForce, mJumpForce));
 			}
 		} 
@@ -68,7 +70,8 @@ public class PlayerMovementController
 		canJump = false;
 	}
 
-	public void checkJump(){
+	public void checkJump ()
+	{
 		if (!canJump) {
 			canJump = CrossPlatformInputManager.GetButtonDown ("Jump");
 		}	
@@ -76,7 +79,8 @@ public class PlayerMovementController
 
 
 
-	private void flip(){
+	private void flip ()
+	{
 		// Switch the way the player is labelled as facing
 		isLeft = !isLeft;
 
