@@ -20,7 +20,7 @@ public class PlayerMovementController
 	//UI Buttons Variables
 	public bool movingLeft;
 	public bool movingRight;
-	public float distanceToCollision = 0.9f;
+	public float distanceToCollision = 0.8f;
 
 	private PlayerController player;
 
@@ -64,7 +64,7 @@ public class PlayerMovementController
 			} else if (wallJump && isWall) {
 				wallJump = false;
 				jump = true;
-				mJumpForce = player.jumpForce * 1f;
+				mJumpForce = player.jumpForce * 1.5f;
 			}
 
 			if (jump) {
