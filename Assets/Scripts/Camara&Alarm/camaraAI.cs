@@ -23,6 +23,14 @@ public class camaraAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (animator.GetCurrentAnimatorStateInfo(0).IsName("rightIdle"))
+ 				{
+    				vision.position = new Vector3(transform.position.x + 2,transform.position.y - 2,transform.position.z);
+ 				}
+ 		if (animator.GetCurrentAnimatorStateInfo(0).IsName("leftIdle"))
+ 				{
+    				vision.position = new Vector3(transform.position.x - 2,transform.position.y - 2,transform.position.z);
+ 				}
 		
 		if(div < 2)
 			div = 2;
@@ -36,19 +44,22 @@ public class camaraAI : MonoBehaviour {
 			countTest++;
 
 
-			if (movR > 0){					
-				vision.position = new Vector3(vision.position.x + 4,vision.position.y,vision.position.z);				
+			if (movR > 0){			
+						
+								
 				movR = 3;
 				animator.SetInteger("MovR", movR);
 				animator.SetInteger("MovL", movL);
+				
 				movR = 0;
 				movL = 3;			
 				
 			}
 			else {
-				vision.position = new Vector3(vision.position.x - 4,vision.position.y,vision.position.z);				
+							
 				animator.SetInteger("MovL", movL);
 				animator.SetInteger("MovR", movR);
+				
 				movL = 0;
 				movR = 3;
 				
@@ -70,4 +81,9 @@ public class camaraAI : MonoBehaviour {
 		
 
 	}
+
+	void FixedUpdate(){
+		
+	}
+
 }
