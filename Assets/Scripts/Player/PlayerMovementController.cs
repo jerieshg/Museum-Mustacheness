@@ -17,6 +17,7 @@ public class PlayerMovementController
 	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
+
 	//UI Buttons Variables
 	public bool movingLeft;
 	public bool movingRight;

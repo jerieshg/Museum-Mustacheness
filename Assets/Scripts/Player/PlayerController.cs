@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
 	private PlayerMovementController playerMovementController;
 	private PlayerCastController playerCastController;
 
-	//Movement
+	[Header("Layers")]
+	public LayerMask collisions;
+
+	[Header("Player Movement Variables")]
 	public float maxSpeed;
 	public float jumpForce;
 	public float jumpPushForce = 10f;
-	public LayerMask collisions;
+
 
 	[HideInInspector] public Rigidbody2D rigidBody;
 

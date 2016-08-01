@@ -3,10 +3,12 @@ using System.Collections;
 using System;
 
 public class PlayerCastController : MonoBehaviour {
-
+	
+	[Header("Cast Position & Throwable Item")]
 	public GameObject playerCastPosition;
 	public GameObject marker;
-	public bool throwing = false;
+
+	[HideInInspector] public bool throwing = false;
 	
 	void Update () {
 		#if UNITY_STANDALONE || UNITY_WEBPLAYER
