@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.IO;
-using UnityEditor;
 
 public class Marker : MonoBehaviour
 {

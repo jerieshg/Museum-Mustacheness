@@ -14,9 +14,13 @@ public class PlayerMovementController
 	public bool canJump;
 	public bool canDoubleJump;
 	public bool wallJump;
- 	public bool isGround;
+	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
+	//UI Buttons Variables
+	public bool movingLeft;
+	public bool movingRight;
+	public bool jumping;
 	public float distanceToCollision = 0.9f;
 
 	private PlayerController player;
@@ -26,9 +30,19 @@ public class PlayerMovementController
 		this.player = player;	
 	}
 
-	public void move(){
-		float move = CrossPlatformInputManager.GetAxis ("Horizontal");
-
+	public void move ()
+	{
+		float move = 0f;
+		#if UNITY_STANDALONE || UNITY_WEBPLAYER
+		 move = CrossPlatformInputManager.GetAxis ("Horizontal");
+		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+		if (movingLeft && !movingRight) {
+			move = Vector3.left.x;
+		}
+		if (movingRight && !movingLeft) {
+			move = Vector3.right.x; 
+		}
+		#endif
 		walking = Mathf.Abs (move) > 0;
 
 		if (isGround || airControl) {
@@ -45,16 +59,17 @@ public class PlayerMovementController
 				canDoubleJump = true;
 				jump = true;
 				wallJump = true;
-			}else if (canDoubleJump) {
+			} else if (canDoubleJump) {
 				canDoubleJump = false;
 				jump = true;
-			}else if (wallJump && isWall) {
+			} else if (wallJump && isWall) {
 				wallJump = false;
 				jump = true;
-				mJumpForce = player.jumpForce * 1.8f;
+				mJumpForce = player.jumpForce * 1f;
 			}
 
 			if (jump) {
+				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
 				player.rigidBody.AddForce (new Vector2 (player.jumpPushForce, mJumpForce));
 			}
 		} 
@@ -66,17 +81,24 @@ public class PlayerMovementController
 		}
 
 		canJump = false;
+		jumping = false;
 	}
 
-	public void checkJump(){
+	public void checkJump ()
+	{
 		if (!canJump) {
+			#if UNITY_STANDALONE || UNITY_WEBPLAYER
 			canJump = CrossPlatformInputManager.GetButtonDown ("Jump");
+			#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+			canJump = jumping;
+			#endif
 		}	
 	}
 
 
 
-	private void flip(){
+	private void flip ()
+	{
 		// Switch the way the player is labelled as facing
 		isLeft = !isLeft;
 
