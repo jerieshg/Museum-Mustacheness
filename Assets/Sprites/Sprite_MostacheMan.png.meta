@@ -66,11 +66,19 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Sprite_MostacheMan_0
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_0
       rect:
         serializedVersion: 2
         x: 0
@@ -80,17 +88,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -4, y: 13}
-        - {x: -7, y: 12}
-        - {x: -10, y: 4}
-        - {x: -10, y: -13}
-        - {x: -9, y: -14}
-        - {x: 8, y: -14}
-        - {x: 10, y: -7}
-        - {x: 10, y: 3}
-        - {x: 5, y: 13}
-    - name: Sprite_MostacheMan_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_1
       rect:
         serializedVersion: 2
         x: 32
@@ -100,16 +101,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -5, y: 12}
-        - {x: -10, y: 6}
-        - {x: -10, y: -13}
-        - {x: -9, y: -14}
-        - {x: 8, y: -14}
-        - {x: 10, y: -8}
-        - {x: 10, y: 3}
-        - {x: 4, y: 12}
-    - name: Sprite_MostacheMan_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_2
       rect:
         serializedVersion: 2
         x: 64
@@ -119,16 +114,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -3, y: 11}
-        - {x: -7, y: 10}
-        - {x: -10, y: 4}
-        - {x: -10, y: -11}
-        - {x: -9, y: -14}
-        - {x: 10, y: -14}
-        - {x: 10, y: 10}
-        - {x: 8, y: 11}
-    - name: Sprite_MostacheMan_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_3
       rect:
         serializedVersion: 2
         x: 0
@@ -138,17 +127,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -6, y: 12}
-        - {x: -10, y: 6}
-        - {x: -10, y: -12}
-        - {x: -7, y: -13}
-        - {x: -2, y: -14}
-        - {x: 7, y: -14}
-        - {x: 10, y: -11}
-        - {x: 10, y: 7}
-        - {x: 7, y: 12}
-    - name: Sprite_MostacheMan_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_4
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +140,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -6, y: 13}
-        - {x: -7, y: 11}
-        - {x: -7, y: -14}
-        - {x: 7, y: -14}
-        - {x: 7, y: 11}
-        - {x: 3, y: 13}
-    - name: Sprite_MostacheMan_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_5
       rect:
         serializedVersion: 2
         x: 64
@@ -175,14 +153,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -5, y: 12}
-        - {x: -9, y: 5}
-        - {x: -9, y: -14}
-        - {x: 8, y: -14}
-        - {x: 8, y: 5}
-        - {x: 5, y: 12}
-    - name: Sprite_MostacheMan_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_6
       rect:
         serializedVersion: 2
         x: 96
@@ -192,14 +166,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -6, y: 13}
-        - {x: -7, y: 11}
-        - {x: -7, y: -14}
-        - {x: 7, y: -14}
-        - {x: 7, y: 11}
-        - {x: 3, y: 13}
-    - name: Sprite_MostacheMan_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_7
       rect:
         serializedVersion: 2
         x: 0
@@ -209,14 +179,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -4, y: 13}
-        - {x: -11, y: 3}
-        - {x: -11, y: -13}
-        - {x: 10, y: -13}
-        - {x: 10, y: 3}
-        - {x: 5, y: 13}
-    - name: Sprite_MostacheMan_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_8
       rect:
         serializedVersion: 2
         x: 32
@@ -226,17 +192,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -3, y: 12}
-        - {x: -7, y: 11}
-        - {x: -11, y: 4}
-        - {x: -11, y: -7}
-        - {x: -10, y: -12}
-        - {x: 7, y: -12}
-        - {x: 10, y: -4}
-        - {x: 10, y: 3}
-        - {x: 5, y: 12}
-    - name: Sprite_MostacheMan_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_9
       rect:
         serializedVersion: 2
         x: 0
@@ -246,16 +205,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -9, y: 13}
-        - {x: -11, y: 10}
-        - {x: -11, y: -11}
-        - {x: -9, y: -14}
-        - {x: 8, y: -14}
-        - {x: 9, y: -13}
-        - {x: 9, y: 0}
-        - {x: 3, y: 13}
-    - name: Sprite_MostacheMan_10
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_10
       rect:
         serializedVersion: 2
         x: 32
@@ -265,16 +218,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -4, y: 13}
-        - {x: -7, y: 12}
-        - {x: -8, y: 11}
-        - {x: -8, y: -14}
-        - {x: 9, y: -14}
-        - {x: 10, y: -12}
-        - {x: 10, y: 6}
-        - {x: 5, y: 13}
-    - name: Sprite_MostacheMan_11
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_11
       rect:
         serializedVersion: 2
         x: 64
@@ -284,15 +231,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -2, y: 13}
-        - {x: -6, y: 12}
-        - {x: -8, y: -1}
-        - {x: -8, y: -14}
-        - {x: 12, y: -14}
-        - {x: 12, y: 11}
-        - {x: 8, y: 13}
-    - name: Sprite_MostacheMan_12
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_12
       rect:
         serializedVersion: 2
         x: 0
@@ -302,13 +244,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: -14}
-        - {x: 8, y: -14}
-        - {x: 8, y: 0}
-        - {x: 4, y: 16}
-        - {x: -8, y: 16}
-    - name: Sprite_MostacheMan_13
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_13
       rect:
         serializedVersion: 2
         x: 0
@@ -318,16 +257,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 5, y: 13}
-        - {x: -2, y: 13}
-        - {x: -6, y: 12}
-        - {x: -9, y: 8}
-        - {x: -9, y: -13}
-        - {x: 9, y: -13}
-        - {x: 9, y: 2}
-        - {x: 8, y: 9}
-    - name: Sprite_MostacheMan_14
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_14
       rect:
         serializedVersion: 2
         x: 0
@@ -337,13 +270,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 16}
-        - {x: -8, y: -14}
-        - {x: 8, y: -14}
-        - {x: 8, y: 6}
-        - {x: 5, y: 16}
-    - name: Sprite_MostacheMan_15
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_15
       rect:
         serializedVersion: 2
         x: 32
@@ -353,13 +283,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 15}
-        - {x: -8, y: -14}
-        - {x: 8, y: -14}
-        - {x: 8, y: 7}
-        - {x: 6, y: 15}
-    - name: Sprite_MostacheMan_16
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_16
       rect:
         serializedVersion: 2
         x: 64
@@ -369,16 +296,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -6, y: 14}
-        - {x: -8, y: 9}
-        - {x: -8, y: -12}
-        - {x: -7, y: -14}
-        - {x: 5, y: -14}
-        - {x: 7, y: -8}
-        - {x: 7, y: 12}
-        - {x: 2, y: 14}
-    - name: Sprite_MostacheMan_17
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_17
       rect:
         serializedVersion: 2
         x: 96
@@ -388,13 +309,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -7, y: 12}
-        - {x: -8, y: 6}
-        - {x: -8, y: -14}
-        - {x: 7, y: -14}
-        - {x: 7, y: 12}
-    - name: Sprite_MostacheMan_18
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_18
       rect:
         serializedVersion: 2
         x: 128
@@ -404,16 +322,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -4, y: 11}
-        - {x: -8, y: 6}
-        - {x: -8, y: -12}
-        - {x: -7, y: -14}
-        - {x: 4, y: -14}
-        - {x: 7, y: -11}
-        - {x: 7, y: 7}
-        - {x: 2, y: 11}
-    - name: Sprite_MostacheMan_19
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_MostacheMan_19
       rect:
         serializedVersion: 2
         x: 160
@@ -423,15 +335,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 5, y: 8}
-        - {x: -2, y: 8}
-        - {x: -8, y: 1}
-        - {x: -8, y: -14}
-        - {x: 5, y: -14}
-        - {x: 8, y: -9}
-        - {x: 9, y: -5}
-        - {x: 9, y: 6}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: MostacheMan
   userData: 

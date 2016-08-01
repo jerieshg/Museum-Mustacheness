@@ -59,11 +59,19 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Sprite_CameraAndAlarm_0
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_0
       rect:
         serializedVersion: 2
         x: 0
@@ -74,7 +82,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_1
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_1
       rect:
         serializedVersion: 2
         x: 16
@@ -85,7 +95,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_2
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_2
       rect:
         serializedVersion: 2
         x: 32
@@ -96,7 +108,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_3
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_3
       rect:
         serializedVersion: 2
         x: 64
@@ -107,7 +121,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_4
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_4
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +134,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_5
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_5
       rect:
         serializedVersion: 2
         x: 16
@@ -129,7 +147,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_6
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_6
       rect:
         serializedVersion: 2
         x: 32
@@ -140,7 +160,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_7
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_7
       rect:
         serializedVersion: 2
         x: 64
@@ -151,7 +173,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_8
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_8
       rect:
         serializedVersion: 2
         x: 80
@@ -162,7 +186,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_9
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_9
       rect:
         serializedVersion: 2
         x: 96
@@ -173,7 +199,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_10
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_10
       rect:
         serializedVersion: 2
         x: 0
@@ -184,7 +212,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_11
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_11
       rect:
         serializedVersion: 2
         x: 16
@@ -195,7 +225,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Sprite_CameraAndAlarm_12
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Sprite_CameraAndAlarm_12
       rect:
         serializedVersion: 2
         x: 32
@@ -206,6 +238,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 
