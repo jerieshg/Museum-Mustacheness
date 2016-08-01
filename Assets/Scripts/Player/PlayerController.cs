@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void jump(){
-		playerMovementController.jumping = true;
+		playerMovementController.canJump = true;
 	}
 
 	private void checkPlayerSurroundings ()
