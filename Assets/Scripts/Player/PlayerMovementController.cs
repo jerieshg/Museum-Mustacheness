@@ -65,7 +65,7 @@ public class PlayerMovementController
 			} else if (wallJump && isWall) {
 				wallJump = false;
 				jump = true;
-				mJumpForce = player.jumpForce * 1.8f;
+				mJumpForce = player.jumpForce * 1f;
 			}
 
 			if (jump) {
