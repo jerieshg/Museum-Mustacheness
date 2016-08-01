@@ -17,6 +17,10 @@ public class PlayerMovementController
 	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
+	//UI Buttons Variables
+	public bool movingLeft;
+	public bool movingRight;
+	public bool jumping;
 	public float distanceToCollision = 0.9f;
 
 	private PlayerController player;
@@ -28,8 +32,17 @@ public class PlayerMovementController
 
 	public void move ()
 	{
-		float move = CrossPlatformInputManager.GetAxis ("Horizontal");
-
+		float move = 0f;
+		#if UNITY_STANDALONE || UNITY_WEBPLAYER
+		 move = CrossPlatformInputManager.GetAxis ("Horizontal");
+		#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+		if (movingLeft && !movingRight) {
+			move = Vector3.left.x;
+		}
+		if (movingRight && !movingLeft) {
+			move = Vector3.right.x; 
+		}
+		#endif
 		walking = Mathf.Abs (move) > 0;
 
 		if (isGround || airControl) {
@@ -68,12 +81,17 @@ public class PlayerMovementController
 		}
 
 		canJump = false;
+		jumping = false;
 	}
 
 	public void checkJump ()
 	{
 		if (!canJump) {
+			#if UNITY_STANDALONE || UNITY_WEBPLAYER
 			canJump = CrossPlatformInputManager.GetButtonDown ("Jump");
+			#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+			canJump = jumping;
+			#endif
 		}	
 	}
 

@@ -9,9 +9,11 @@ public class PlayerCastController : MonoBehaviour {
 	public bool throwing = false;
 	
 	void Update () {
+		#if UNITY_STANDALONE || UNITY_WEBPLAYER
 		if (Input.GetButtonDown ("Fire1")) {
 			throwing = true;
 		}
+		#endif
 	}
 
 	private void throwMarker()
@@ -20,7 +22,11 @@ public class PlayerCastController : MonoBehaviour {
 		Instantiate (marker,playerCastPosition.transform.position,playerCastPosition.transform.rotation);
 	}
 
-    private void cancelThrow()
+	public void isThrowing(){
+		throwing = true;
+	}
+
+    public void cancelThrow()
     {
         throwing = false;
     }

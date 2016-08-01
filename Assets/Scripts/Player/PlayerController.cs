@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +39,26 @@ public class PlayerController : MonoBehaviour
 		checkPlayerSurroundings ();
 		handleAnimations ();
 		playerMovementController.move ();
+	}
+
+	public void moveLeft(){
+		playerMovementController.movingLeft = true;
+	}
+
+	public void cancelMoveLeft(){
+		playerMovementController.movingLeft = false;
+	}
+
+	public void moveRight(){
+		playerMovementController.movingRight = true;
+	}
+
+	public void cancelMoveRight(){
+		playerMovementController.movingRight = false;
+	}
+
+	public void jump(){
+		playerMovementController.jumping = true;
 	}
 
 	private void checkPlayerSurroundings ()
