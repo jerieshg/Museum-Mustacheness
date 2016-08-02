@@ -9,9 +9,15 @@ public class PlayerController : MonoBehaviour
 	private PlayerAnimationController playerAnimationController;
 	private PlayerMovementController playerMovementController;
 	private PlayerCastController playerCastController;
+	private PlayerStats playerStats;
 
 	[Header("Layers")]
 	public LayerMask collisions;
+
+	[Header("Player Stats Variables")]
+	public float hitpoints;
+	public int markers;
+	public int score;
 
 	[Header("Player Movement Variables")]
 	public float maxSpeed;
@@ -26,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start ()
 	{
+		playerStats = new PlayerStats (hitpoints, markers, score);
 		rigidBody = GetComponent<Rigidbody2D> ();
 		playerAnimationController = GetComponent<PlayerAnimationController> ();
 		playerCastController = GetComponent<PlayerCastController> ();

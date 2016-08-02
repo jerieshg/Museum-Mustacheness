@@ -9,14 +9,6 @@ public class PlayerCastController : MonoBehaviour {
 	public GameObject marker;
 
 	[HideInInspector] public bool throwing = false;
-	
-	void Update () {
-		#if UNITY_STANDALONE || UNITY_WEBPLAYER
-		if (Input.GetButtonDown ("Fire1")) {
-			throwing = true;
-		}
-		#endif
-	}
 
 	private void throwMarker()
     {
