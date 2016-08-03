@@ -4,19 +4,28 @@ using System;
 using System.Runtime.InteropServices;
 
 public class StatePatternEnemy : MonoBehaviour {
-	
+
+	[Header("Movement Variables")]
 	public float patrolSpeed = 4f;
 	public float chaseSpeed = 6f;
 	public float jumpForce = 40f;
+
+	[Header("Alert State Variables")]
 	public float searchingTurnSpeed = 120f;
 	public float searchingDuration = 4f;
 	public float sightRange = 20f;
 	public float maxDistance = 10f;
 	public float stoppingDistance = 0.4f;
+
+	[Header("Patrolling Waypoints")]
+	public Transform[] waypoints;
+
+	[Header("Additional Mob Info")]
 	public Transform eyes;
 	public Vector3 offset = new Vector3(0, 0.5f, 0);
+
+	[Header("Layers")]
 	public LayerMask collisions; 
-	public Transform[] waypoints;
 
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public bool isGoingLeft;
