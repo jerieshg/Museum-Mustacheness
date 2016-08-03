@@ -4,13 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-	//Controllers
-	private PlayerAnimationController playerAnimationController;
-	private PlayerMovementController playerMovementController;
-	private PlayerCastController playerCastController;
-	private PlayerStats playerStats;
-
 	[Header("Layers")]
 	public LayerMask collisions;
 
@@ -24,10 +17,20 @@ public class PlayerController : MonoBehaviour
 	public float jumpForce;
 	public float jumpPushForce = 10f;
 
+	[Header("Cast Position & Throwable Item")]
+	public GameObject playerCastPosition;
+	public GameObject marker;
 
 	[HideInInspector] public Rigidbody2D rigidBody;
 
+	//Controllers
+	private PlayerAnimationController playerAnimationController;
+	private PlayerMovementController playerMovementController;
+	private PlayerStats playerStats;
+
+	//Other variables
 	private float attackTimeCd = 0f;
+	private bool throwing;
 	private bool canAttack;
 
 	void Start ()
@@ -35,7 +38,6 @@ public class PlayerController : MonoBehaviour
 		playerStats = new PlayerStats (hitpoints, markers, score);
 		rigidBody = GetComponent<Rigidbody2D> ();
 		playerAnimationController = GetComponent<PlayerAnimationController> ();
-		playerCastController = GetComponent<PlayerCastController> ();
 		playerMovementController = new PlayerMovementController (this);
 	}
 
@@ -49,6 +51,15 @@ public class PlayerController : MonoBehaviour
 		checkPlayerSurroundings ();
 		handleAnimations ();
 		playerMovementController.move ();
+	}
+
+	public void isThrowing(){
+		throwing = true;
+	}
+
+	public void cancelThrow()
+	{
+		throwing = false;
 	}
 
 	public void moveLeft(){
@@ -69,6 +80,12 @@ public class PlayerController : MonoBehaviour
 
 	public void jump(){
 		playerMovementController.canJump = true;
+	}
+
+	private void throwMarker()
+	{
+		marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
+		Instantiate (marker,playerCastPosition.transform.position, playerCastPosition.transform.rotation);
 	}
 
 	private void checkPlayerSurroundings ()
@@ -95,6 +112,6 @@ public class PlayerController : MonoBehaviour
 	{
 		playerAnimationController.walk = playerMovementController.walking;
 		playerAnimationController.jump = !playerMovementController.isGround;
-		playerAnimationController.throwMarker = playerCastController.throwing;
+		playerAnimationController.throwMarker = throwing;
 	}
 }

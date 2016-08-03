@@ -92,8 +92,6 @@ public class PlayerMovementController
 		}	
 	}
 
-
-
 	private void flip ()
 	{
 		// Switch the way the player is labelled as facing
