@@ -3,61 +3,106 @@ using System.Collections;
 
 public class CameraAI : MonoBehaviour
 {
-	protected Animator animator;
-	protected Transform vision;
-	protected Animation anim;
-	
-	int movR = 1;
-	int movL = 1;
-	public int div = 5;
-	int countTest = 0;
-	bool pass = true;
-	
-	void Start ()
+	public float cameraWaitTime = 3f;               //Sets the delay time to turn camera
+	private float cameraWaitCD = 0f;                //Tracks the delay time to turn camera
+	public bool startRight;                         //Sets if camera should be facing right at the start, if not then it starts left
+	public DrawCircle[] cameraVisionColliders;		//Stores the camera vision colliders
+	public bool targetOnSight = false;				//Sets if target is on sight
+
+	private Animator cameraAnimator;
+	private bool canTurnCamera = true;
+
+	void Awake ()
 	{
-		animator = GetComponent<Animator> ();		
-		vision = this.gameObject.transform.GetChild (0);
+		//Getting camera animator reference
+		cameraAnimator = GetComponent<Animator> ();
 	}
-	
+
+	void Start()
+	{
+		cameraAnimator.SetBool("StartRight", startRight);
+		disableCols ();
+	}
+
 	void Update ()
 	{
-		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("rightIdle")) {
-			vision.position = new Vector3 (transform.position.x + 2, transform.position.y - 2, transform.position.z);
-		}
-		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("leftIdle")) {
-			vision.position = new Vector3 (transform.position.x - 2, transform.position.y - 2, transform.position.z);
-		}
-		
-		if (div < 2)
-			div = 2;
-		int letime = (int)Time.time;
-		
-		int boolo = letime % div;
+		trackTurnTime();
+		checkIfCollisionsHaveTarget ();
 
-		if (boolo == 0) {
-			if (pass) {
-				Debug.Log (countTest);
-				countTest++;
-
-				if (movR > 0) {			
-					movR = 3;
-					animator.SetInteger ("MovR", movR);
-					animator.SetInteger ("MovL", movL);
-				
-					movR = 0;
-					movL = 3;			
-				
-				} else {
-					animator.SetInteger ("MovL", movL);
-					animator.SetInteger ("MovR", movR);
-				
-					movL = 0;
-					movR = 3;
-				
+		if (canTurnCamera)
+		{
+			if (cameraAnimator.GetCurrentAnimatorStateInfo(0).IsName("Left_Idle"))
+			{
+				if (cameraWaitCD >= cameraWaitTime)
+				{
+					cameraAnimator.SetBool("RotateLeft", false);
+					cameraAnimator.SetBool("RotateRight", true);
+					cameraWaitCD = 0f;
 				}
-				pass = false;
 			}
-		} else
-			pass = true;
+			if (cameraAnimator.GetCurrentAnimatorStateInfo(0).IsName("Right_Idle"))
+			{
+				if (cameraWaitCD >= cameraWaitTime)
+				{
+					cameraAnimator.SetBool("RotateLeft", true);
+					cameraAnimator.SetBool("RotateRight", false);
+					cameraWaitCD = 0f;
+				}
+			}
+		}
 	}
+
+	void checkIfCollisionsHaveTarget()
+	{
+		if (cameraVisionColliders [0].hitInfo) 
+		{
+			canTurnCamera = false;
+			targetOnSight = true;
+			cameraAnimator.SetBool("RotateLeft", true);
+			cameraAnimator.SetBool("RotateRight", false);
+		}
+		else if(cameraVisionColliders [1].hitInfo)
+		{
+			canTurnCamera = false;
+			targetOnSight = true;
+			cameraAnimator.SetBool("RotateLeft", false);
+			cameraAnimator.SetBool("RotateRight", true);
+		}
+		else 
+		{
+			targetOnSight = false;
+			canTurnCamera = true;
+		}
+	}
+
+	//Tracks the delay time to turn camera to opposite direction
+	void trackTurnTime()
+	{
+		cameraWaitCD += Time.deltaTime;
+		//Debug.Log(cameraWaitCD);
+
+		if (cameraWaitCD >= cameraWaitTime)
+		{
+			cameraWaitCD = cameraWaitTime;
+		}
+	}
+
+	void disableCols()
+	{
+		cameraVisionColliders [0].gameObject.SetActive (false);
+		cameraVisionColliders [1].gameObject.SetActive (false);
+	}
+
+	void enableRightCol()
+	{
+		cameraVisionColliders [0].gameObject.SetActive (false);
+		cameraVisionColliders [1].gameObject.SetActive (true);
+	}
+
+	void enableLeftCol()
+	{
+		cameraVisionColliders [0].gameObject.SetActive (true);
+		cameraVisionColliders [1].gameObject.SetActive (false);
+	}
+
 }
