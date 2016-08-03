@@ -3,16 +3,34 @@ using System.Collections;
 
 public class CameraVision : MonoBehaviour
 {
-	
-	public GameObject alarm;
-	protected Animator alarmAnim;
-	protected GameObject vision;
+    public float LoseTargetDelay = 5f;                 //Delay in which the alarm is set to off
+    public bool hasTarget = false;
 
-	void OnTriggerEnter2D (Collider2D other)
+	/*void OnTriggerStay2D (Collider2D other)
 	{
-		if (other.gameObject.tag == "Player") {
-			alarmAnim = alarm.GetComponent<Animator> ();
-			alarmAnim.SetInteger ("active", 1);
-		}
+		if (other.gameObject.tag == "Player")
+        {
+            GameManager.gameManager.AlarmOn = true;
+            StopCoroutine(alarmOffDelay());
+        }
 	}
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Setting Alarm Off");
+            StartCoroutine(alarmOffDelay());
+        }
+    }
+
+    IEnumerator alarmOffDelay()
+    {
+        yield return new WaitForSeconds(LoseTargetDelay);
+
+        GameManager.gameManager.AlarmOn = false;
+        Debug.Log("Alarm set off");
+    }
+*/
+
 }

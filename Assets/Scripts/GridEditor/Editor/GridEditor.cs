@@ -51,7 +51,6 @@ public class GridEditor : Editor
 
     public override void OnInspectorGUI()
     {
-
         GUILayout.BeginVertical();
 
         GUILayout.BeginVertical("box");
@@ -82,6 +81,7 @@ public class GridEditor : Editor
         EditorGUILayout.HelpBox("Left click to draw and right click to remove.",MessageType.Info);
 
         drawLayerControls();
+		GUILayout.Space (10f);
         drawTileChooser();
 
         GUILayout.EndVertical();
@@ -115,86 +115,117 @@ public class GridEditor : Editor
         }
         GUILayout.EndVertical();
 
-        if (grid.gridLayers.Count > 0)
+		GUILayout.Space (10f);
+
+		if(grid.gridLayers.Count == 0)
+		{
+			EditorGUILayout.HelpBox("There are no layers to display.",MessageType.Error);
+		}
+		else if (grid.gridLayers.Count != 0 && grid.gridLayers.Count > 0)
         {
-            for (int a = 0; a < grid.gridLayers.Count; a++)
-            {
-                GUILayout.BeginVertical("box");
+			foreach(GameObject layer in grid.gridLayers)
+			{
+				GUILayout.BeginVertical("box");
 
-                grid.gridLayers[a].name = EditorGUILayout.TextField("Layer Name:", grid.gridLayers[a].name);
+				Layer currentLayer = layer.GetComponent<Layer> ();
+				layer.name = EditorGUILayout.TextField("Layer Name:", layer.name);
 
-                GUILayout.BeginHorizontal();
-                if (GUILayout.Button("Select Layer"))
-                {
-                    selectLayer(grid.gridLayers[a]);
-                }
+				GUILayout.BeginHorizontal();
+				if (GUILayout.Button("Select"))
+				{
+					selectLayer(layer);
+				}
 
-                if (GUILayout.Button("Remove Layer"))
-                {
-                    removeLayer(grid.gridLayers[a]);
-                }
+				//TODO: Must fix clear button on gridEditor
+				/*if(GUILayout.Button("Clear"))
+				{
+					clearLayer (layer);
+				}*/
 
-                if (GUILayout.Button(setHideShowButtonText(grid.gridLayers[a])))
-                {
-                    hideShowLayer(grid.gridLayers[a]);
-                }
+				if (GUILayout.Button("Remove"))
+				{
+					removeLayer(layer);
+				}
+				GUILayout.EndHorizontal();
 
-                GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal ();
+				currentLayer.visible = GUILayout.Toggle (currentLayer.visible, "Visible","Button");
+				hideShowLayer (currentLayer.visible, layer);
 
-                GUILayout.EndVertical();
-            }
-        }
-        else
-        {
-            EditorGUILayout.HelpBox("There are no layers to display.",MessageType.Error);
+				currentLayer.locked = GUILayout.Toggle (currentLayer.locked, "Locked", "Button");
+				GUILayout.EndHorizontal ();
+	
+				GUILayout.EndVertical();
+			}
         }
 
         GUILayout.EndVertical();
     }
 
-    //Set the button text depeding if the layer is active or not
-    string setHideShowButtonText(GameObject layer)
+    //Hides a layer using its gameobject
+	void hideShowLayer(bool setActive, GameObject layerObject)
     {
-        if (layer.gameObject.activeSelf == true)
-        {
-            return "Hide";
-        }
-        else
-        {
-            return "Show";
-        }
+		layerObject.SetActive(setActive);
     }
 
-    //Hides a layer using its gameobject
-    void hideShowLayer(GameObject layer)
-    {
-        layer.gameObject.SetActive(!layer.gameObject.activeSelf);
-    }
+	//Clears all objects from the layerObject
+	void clearLayer(GameObject layer)
+	{
+		if(layer.transform.childCount > 0 && layer.transform.childCount != 0)
+		{
+			Debug.Log (layer.transform.childCount);
+			for(int a = 0; a < layer.transform.childCount; a++)
+			{
+			}
+		}
+	}
 
     //Removes a layer by removing the gameobject associated with it
-    void removeLayer(GameObject layer)
+	void removeLayer(GameObject layer)
     {
-        grid.gridLayers.Remove(layer);
-        DestroyImmediate(layer);
+		if (layer.GetComponent<Layer> ().locked == false)
+		{
+			grid.gridLayers.Remove (layer);
+			DestroyImmediate (layer);
+
+			recreateLayerList ();
+		} 
+		else 
+		{
+			Debug.Log ("<color=red>Layer: '" + layer.name + "' cannot be removed because its locked!!</color>");
+		}
     }
 
+	void recreateLayerList()
+	{
+		grid.gridLayers.Clear ();
+
+		if(grid.transform.childCount > 0 && grid.transform.childCount != 0)
+		{
+			for(int a = 0; a < grid.transform.childCount; a++)
+			{
+				grid.gridLayers.Add (grid.transform.GetChild(a).gameObject);
+			}
+		}
+	}
+
     //Makes current selected layer from a gameobject
-    void selectLayer(GameObject layer)
+	void selectLayer(GameObject layer)
     {
-        grid.selectedLayer = layer.transform;
+		grid.selectedLayer = layer.transform;
     }
 
     void drawGridControls()
     {
-        //canDraw = GUILayout.Toggle(canDraw,"Draw Tile","Button");
         if (GUILayout.Button("Add Layer"))
         {
-            GameObject newLayer = new GameObject();
+			GameObject newLayer = new GameObject();
+			newLayer.AddComponent<Layer> ();
 
             newLayer.transform.SetParent(grid.transform);
             newLayer.name = "Layer " + grid.gridLayers.Count;
 
-            grid.gridLayers.Add(newLayer);
+			grid.gridLayers.Add(newLayer);
         }
     }
 
@@ -205,7 +236,7 @@ public class GridEditor : Editor
 
         if (grid.tileSet != null)
         {
-            if (grid.tileSet.Prefabs.Length != 0 && grid.tileSet.Prefabs[0] != null)
+			if (grid.tileSet.Prefabs.Length > 0 && grid.tileSet.Prefabs.Length != 0 && grid.tileSet.Prefabs[0] != null)
             {
                 tileTextures = new Texture2D[grid.tileSet.Prefabs.Length];
 

@@ -17,7 +17,7 @@ public class Grid : MonoBehaviour {
 
     public TileSet tileSet;
 
-    public List<GameObject> gridLayers;
+	public List<GameObject> gridLayers;
     public bool drawGrid = true;
 
     void OnDrawGizmosSelected()
