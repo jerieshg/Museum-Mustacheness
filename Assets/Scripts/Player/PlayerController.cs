@@ -4,21 +4,22 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-	[Header("Layers")]
+	[Header ("Layers")]
 	public LayerMask collisions;
 
-	[Header("Player Stats Variables")]
+	[Header ("Player Stats Variables")]
 	public float hitpoints;
 	public int markers;
 	public int score;
 
-	[Header("Player Movement Variables")]
+	[Header ("Player Movement Variables")]
 	public float maxSpeed;
 	public float jumpForce;
 	public float jumpPushForce = 10f;
 
-	[Header("Cast Position & Throwable Item")]
+	[Header ("Transforms Position & Throwable Item")]
 	public GameObject playerCastPosition;
+	public Transform[] playerGroundedPositions;
 	public GameObject marker;
 
 	[HideInInspector] public Rigidbody2D rigidBody;
@@ -53,39 +54,45 @@ public class PlayerController : MonoBehaviour
 		playerMovementController.move ();
 	}
 
-	public void isThrowing(){
+	public void isThrowing ()
+	{
 		throwing = true;
 	}
 
-	public void cancelThrow()
+	public void cancelThrow ()
 	{
 		throwing = false;
 	}
 
-	public void moveLeft(){
+	public void moveLeft ()
+	{
 		playerMovementController.movingLeft = true;
 	}
 
-	public void cancelMoveLeft(){
+	public void cancelMoveLeft ()
+	{
 		playerMovementController.movingLeft = false;
 	}
 
-	public void moveRight(){
+	public void moveRight ()
+	{
 		playerMovementController.movingRight = true;
 	}
 
-	public void cancelMoveRight(){
+	public void cancelMoveRight ()
+	{
 		playerMovementController.movingRight = false;
 	}
 
-	public void jump(){
+	public void jump ()
+	{
 		playerMovementController.canJump = true;
 	}
 
-	private void throwMarker()
+	private void throwMarker ()
 	{
 		marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
-		Instantiate (marker,playerCastPosition.transform.position, playerCastPosition.transform.rotation);
+		Instantiate (marker, playerCastPosition.transform.position, playerCastPosition.transform.rotation);
 	}
 
 	private void checkPlayerSurroundings ()
@@ -93,17 +100,18 @@ public class PlayerController : MonoBehaviour
 		playerMovementController.isGround = false;
 		playerMovementController.isWall = false;
 
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 2f, collisions);
-	
-		if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
-			playerMovementController.isGround = true;
+		foreach (Transform e in playerGroundedPositions) {
+			RaycastHit2D hit = Physics2D.Raycast (e.position, -Vector2.up, 2f, collisions);
+			if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
+				playerMovementController.isGround = true;
+			}
 		}
 
 		Vector2 direction = (playerMovementController.isLeft) ? Vector2.left : Vector2.right;
 
-		hit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
+		RaycastHit2D wallHit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
 
-		if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
+		if (wallHit.collider != null && wallHit.distance < playerMovementController.distanceToCollision) {
 			playerMovementController.isWall = true;
 		}
 	}
