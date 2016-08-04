@@ -53,6 +53,7 @@ public class PlayerMovementController
 
 		if (canJump) {
 			float mJumpForce = player.jumpForce;
+			float mPushForce = player.jumpPushForce;
 
 			if (isGround) {
 				canDoubleJump = true;
@@ -65,11 +66,12 @@ public class PlayerMovementController
 				wallJump = false;
 				jump = true;
 				mJumpForce = player.jumpForce * 1.5f;
+				mPushForce = player.wallPushForce;
 			}
 
 			if (jump) {
 				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
-				player.rigidBody.AddForce (new Vector2 (player.jumpPushForce, mJumpForce), ForceMode2D.Impulse);
+				player.rigidBody.AddForce (new Vector2 (mPushForce, mJumpForce), ForceMode2D.Impulse);
 			}
 		} 
 

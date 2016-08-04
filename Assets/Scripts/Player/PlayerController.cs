@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	public float jumpForce;
 	public float jumpPushForce = 10f;
 	public float distanceToCollision = 0.5f;
+	public float wallPushForce = 10f;
 
 	[Header ("Transforms Position & Throwable Item")]
 	public GameObject playerCastPosition;
