@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	public float maxSpeed;
 	public float jumpForce;
 	public float jumpPushForce = 10f;
+	public float distanceToCollision = 0.5f;
 
 	[Header ("Transforms Position & Throwable Item")]
 	public GameObject playerCastPosition;
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
 		foreach (Transform e in playerGroundedPositions) {
 			RaycastHit2D hit = Physics2D.Raycast (e.position, -Vector2.up, 2f, collisions);
-			if (hit.collider != null && hit.distance < playerMovementController.distanceToCollision) {
+			if (hit.collider != null && hit.distance < distanceToCollision) {
 				playerMovementController.isGround = true;
 			}
 		}
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
 		RaycastHit2D wallHit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
 
-		if (wallHit.collider != null && wallHit.distance < playerMovementController.distanceToCollision) {
+		if (wallHit.collider != null && wallHit.distance < distanceToCollision) {
 			playerMovementController.isWall = true;
 		}
 	}

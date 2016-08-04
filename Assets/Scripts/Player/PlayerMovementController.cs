@@ -21,7 +21,6 @@ public class PlayerMovementController
 	//UI Buttons Variables
 	public bool movingLeft;
 	public bool movingRight;
-	public float distanceToCollision = 0.5f;
 
 	private PlayerController player;
 
