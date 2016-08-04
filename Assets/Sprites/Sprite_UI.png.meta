@@ -1,22 +1,21 @@
 fileFormatVersion: 2
-guid: 6bc8cac16af895645aeb6c13159aa596
-timeCreated: 1469754915
+guid: 88054f3a5227c514689eeb6c162f1f3b
+timeCreated: 1470273406
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Sprite_CameraAndAlarm_0
-    21300002: Sprite_CameraAndAlarm_1
-    21300004: Sprite_CameraAndAlarm_2
-    21300006: Sprite_CameraAndAlarm_3
-    21300008: Sprite_CameraAndAlarm_4
-    21300010: Sprite_CameraAndAlarm_5
-    21300012: Sprite_CameraAndAlarm_6
-    21300014: Sprite_CameraAndAlarm_7
-    21300016: Sprite_CameraAndAlarm_8
-    21300018: Sprite_CameraAndAlarm_9
-    21300020: Sprite_CameraAndAlarm_10
-    21300022: Sprite_CameraAndAlarm_11
-    21300024: Sprite_CameraAndAlarm_12
+    21300000: Sprite_UI_PlayerHPCon
+    21300002: Sprite_UI_PlayerScoreCon
+    21300004: Sprite_UI_PlayerHPUnit
+    21300006: Sprite_UI_MarkerCon
+    21300008: Sprite_UI_RightArrow
+    21300010: Sprite_UI_LeftArrow
+    21300012: Sprite_UI_RightArrowPressed
+    21300014: Sprite_UI_LeftArrowPressed
+    21300016: Sprite_UI_AButton
+    21300018: Sprite_UI_BButton
+    21300020: Sprite_UI_AButtonPressed
+    21300022: Sprite_UI_BButtonPressed
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,14 +31,14 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -60,14 +59,14 @@ TextureImporter:
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 5
+  textureType: 8
   buildTargetSettings:
-  - buildTarget: Android
-    maxTextureSize: 2048
+  - buildTarget: Standalone
+    maxTextureSize: 1024
     textureFormat: -3
     compressionQuality: 50
     allowsAlphaSplitting: 0
-  - buildTarget: Standalone
+  - buildTarget: Android
     maxTextureSize: 1024
     textureFormat: -3
     compressionQuality: 50
@@ -76,174 +75,161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_0
+      name: Sprite_UI_PlayerHPCon
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 16
+        y: 125
+        width: 64
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_4
+      name: Sprite_UI_PlayerScoreCon
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 16
-        height: 16
+        y: 111
+        width: 58
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_5
+      name: Sprite_UI_PlayerHPUnit
       rect:
         serializedVersion: 2
-        x: 16
-        y: 128
-        width: 16
-        height: 16
+        x: 72
+        y: 115
+        width: 4
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_6
+      name: Sprite_UI_MarkerCon
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 16
-        height: 16
+        x: 69
+        y: 126
+        width: 14
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_7
+      name: Sprite_UI_RightArrow
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 31
+        y: 5
+        width: 20
+        height: 37
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_8
+      name: Sprite_UI_LeftArrow
       rect:
         serializedVersion: 2
-        x: 80
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 7
+        y: 5
+        width: 20
+        height: 37
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_9
+      name: Sprite_UI_RightArrowPressed
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 31
+        y: 46
+        width: 22
+        height: 39
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_10
+      name: Sprite_UI_LeftArrowPressed
       rect:
         serializedVersion: 2
-        x: 0
-        y: 112
-        width: 16
-        height: 16
+        x: 5
+        y: 46
+        width: 22
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_11
+      name: Sprite_UI_AButton
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
-        width: 16
-        height: 16
+        x: 192
+        y: 5
+        width: 27
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_CameraAndAlarm_12
+      name: Sprite_UI_BButton
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
+        x: 223
+        y: 5
+        width: 27
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_AButtonPressed
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 36
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_BButtonPressed
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 36
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
