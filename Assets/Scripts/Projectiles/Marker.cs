@@ -18,6 +18,7 @@ public class Marker : MonoBehaviour
 
 	void Awake ()
 	{
+		GetComponent<SpriteRenderer> ().flipX = (direction.x > 0);
 		Destroy (this.gameObject, lifetime);
 	}
 
