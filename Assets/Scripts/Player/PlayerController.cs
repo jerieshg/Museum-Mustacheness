@@ -44,12 +44,12 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
 	{
+		checkPlayerSurroundings ();
 		playerMovementController.checkJump ();
 	}
 
 	void FixedUpdate ()
 	{
-		checkPlayerSurroundings ();
 		handleAnimations ();
 		playerMovementController.move ();
 	}

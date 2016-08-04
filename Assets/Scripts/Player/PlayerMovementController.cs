@@ -21,7 +21,7 @@ public class PlayerMovementController
 	//UI Buttons Variables
 	public bool movingLeft;
 	public bool movingRight;
-	public float distanceToCollision = 0.8f;
+	public float distanceToCollision = 0.5f;
 
 	private PlayerController player;
 
@@ -70,7 +70,7 @@ public class PlayerMovementController
 
 			if (jump) {
 				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
-				player.rigidBody.AddForce (new Vector2 (player.jumpPushForce, mJumpForce));
+				player.rigidBody.AddForce (new Vector2 (player.jumpPushForce, mJumpForce), ForceMode2D.Impulse);
 			}
 		} 
 
