@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
 	void Update ()
 	{
 		checkPlayerSurroundings ();
-		playerMovementController.checkJump ();
 	}
 
 	void FixedUpdate ()
@@ -115,6 +114,9 @@ public class PlayerController : MonoBehaviour
 
 		if (wallHit.collider != null && wallHit.distance < distanceToCollision) {
 			playerMovementController.isWall = true;
+			playerMovementController.canMove = false;
+		}else {
+			playerMovementController.canMove = true;
 		}
 	}
 

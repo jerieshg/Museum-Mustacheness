@@ -13,10 +13,12 @@ public class PlayerMovementController
 	//Player Movement Variables
 	public bool canJump;
 	public bool canDoubleJump;
+	public bool canMove = true;
 	public bool wallJump;
 	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
+
 
 	//UI Buttons Variables
 	public bool movingLeft;
@@ -45,8 +47,9 @@ public class PlayerMovementController
 		walking = Mathf.Abs (move) > 0;
 
 		if (isGround || airControl) {
-			float fallSpeed = (!isWall) ? player.rigidBody.velocity.y : player.rigidBody.velocity.y / wallFriction;
-			player.rigidBody.velocity = new Vector2 (move * player.maxSpeed, fallSpeed);
+			if (canMove) {
+				player.transform.Translate (move * player.maxSpeed * Time.fixedDeltaTime * player.transform.localScale.x, 0, 0);
+			}
 		}
 
 		jump = false;
@@ -65,13 +68,12 @@ public class PlayerMovementController
 			} else if (wallJump && isWall) {
 				wallJump = false;
 				jump = true;
-				mJumpForce = player.jumpForce * 1.5f;
 				mPushForce = player.wallPushForce;
 			}
 
 			if (jump) {
 				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
-				player.rigidBody.AddForce (new Vector2 (mPushForce, mJumpForce), ForceMode2D.Impulse);
+				player.rigidBody.AddForce (new Vector2 (mPushForce*-player.transform.localScale.x, mJumpForce), ForceMode2D.Impulse);
 			}
 		} 
 
@@ -82,15 +84,6 @@ public class PlayerMovementController
 		}
 
 		canJump = false;
-	}
-
-	public void checkJump ()
-	{
-		if (!canJump) {
-			#if UNITY_STANDALONE || UNITY_WEBPLAYER
-			canJump = CrossPlatformInputManager.GetButtonDown ("Jump");
-			#endif
-		}	
 	}
 
 	private void flip ()
