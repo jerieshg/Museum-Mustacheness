@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 88054f3a5227c514689eeb6c162f1f3b
-timeCreated: 1470273406
+timeCreated: 1470354464
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,8 @@ TextureImporter:
     21300018: Sprite_UI_BButton
     21300020: Sprite_UI_AButtonPressed
     21300022: Sprite_UI_BButtonPressed
+    21300024: Sprite_UI_Menu
+    21300026: Sprite_UI_MenuPressed
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -80,7 +82,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 125
-        width: 64
+        width: 80
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -104,7 +106,7 @@ TextureImporter:
       name: Sprite_UI_PlayerHPUnit
       rect:
         serializedVersion: 2
-        x: 72
+        x: 86
         y: 115
         width: 4
         height: 8
@@ -117,7 +119,7 @@ TextureImporter:
       name: Sprite_UI_MarkerCon
       rect:
         serializedVersion: 2
-        x: 69
+        x: 83
         y: 126
         width: 14
         height: 14
@@ -225,6 +227,32 @@ TextureImporter:
         y: 36
         width: 31
         height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_Menu
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 127
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_MenuPressed
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 126
+        width: 18
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 		playerMovementController.move ();
 	}
 
+	//TODO: Make player manager to control player actions
 	public void isThrowing ()
 	{
 		throwing = true;

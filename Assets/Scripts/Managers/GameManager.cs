@@ -5,12 +5,25 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager gameManager;
 
+	public GameObject playerPrefab;
+	public GameObject currentPlayerObj;
     public difficulty gameDifficulty = difficulty.Normal;
 
     void Awake()
     {
         gameManager = this;
     }
+
+	void Start()
+	{
+		//TODO: Fix level loading
+		//StartCoroutine (LevelManager.levelManager.startLevel());
+	}
+
+	public void setCurrentPlayerObj(GameObject playerObj)
+	{
+		currentPlayerObj = playerObj;
+	}
 
 	//Changes values depending on difficulty
 	public void setDifficulty(difficulty newDifficulty)
