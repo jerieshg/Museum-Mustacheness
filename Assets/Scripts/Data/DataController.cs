@@ -9,12 +9,12 @@ using System.IO;
 public static class DataController
 {
 
-	public static List<Game> savedGames = new List<> ();
+	public static List<Game> savedGames = new List<Game> ();
 	private static string dataPath = Path.Combine (Application.dataPath, "mr.mustache");
 
 	public static void Save ()
 	{
-		savedGames.Add (Game.current);
+		//savedGames.Add (Game.current);
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (dataPath);
 		bf.Serialize (file, DataController.savedGames);
