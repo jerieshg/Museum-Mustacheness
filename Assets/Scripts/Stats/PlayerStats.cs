@@ -6,7 +6,9 @@ public class PlayerStats : Stats {
 	public int markers;
 	public int score;
 
-	public PlayerStats(){
+	public PlayerStats()
+	{
+		
 	}
 
 	public PlayerStats(float hitpoints, int markers, int score){

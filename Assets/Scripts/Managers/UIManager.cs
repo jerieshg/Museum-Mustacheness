@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour {
 	public Text scoreText;
 	public Text markerText;
 
+	[Header("General UI Elements")]
+	public Animator faderAnimator;
+
 	public GameObject currentPlayerObj;
 
 	void Awake()
@@ -19,17 +22,22 @@ public class UIManager : MonoBehaviour {
 
 	void Update()
 	{
-		//TODO: Fix player UI for updating info
-		//UpdatePlayerInfo ();
+		UpdatePlayerInfo ();
 	}
 
+	public void setFaderState(bool state)
+	{
+		faderAnimator.SetBool ("FaderOn", state);
+	}
+
+	//Updates player info if player is on scene
 	void UpdatePlayerInfo()
 	{
 		if (currentPlayerObj != null)
 		{
 			Debug.Log ("<color=green><b>PlayerPrefab Detected</b></color>");
-			scoreText.text = "Score: " + currentPlayerObj.GetComponent<PlayerStats> ().score;
-			markerText.text = "X" + currentPlayerObj.GetComponent<PlayerStats> ().markers;
+			scoreText.text = "Score: " + currentPlayerObj.GetComponent<PlayerController> ().score;
+			markerText.text = "X" + currentPlayerObj.GetComponent<PlayerController> ().markers;
 		} 
 		else
 		{
@@ -37,6 +45,7 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
+	//Sets the current player obj as reference
 	public void setUICurrentPlayerObj(GameObject prefab)
 	{
 		currentPlayerObj = prefab;

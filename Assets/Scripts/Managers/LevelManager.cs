@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
 		getSTARTENDPos ();
 	}
 
+	//Gets the start pos and end pos to be used later
 	void getSTARTENDPos()
 	{
 		if(startEndCon.transform.childCount > 0 && startEndCon.transform.childCount != 0)
@@ -26,14 +27,20 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	//Setting up the level
 	public IEnumerator startLevel()
 	{
-		yield return new WaitForSeconds (5f);
+		UIManager.uiManager.setFaderState (true);
+
+		yield return new WaitForSeconds (2f);
 
 		GameObject instPlayer = Instantiate (GameManager.gameManager.playerPrefab, startPos.transform.position, startPos.transform.rotation) as GameObject;
 
-		GameManager.gameManager.setCurrentPlayerObj (instPlayer);
-		UIManager.uiManager.setUICurrentPlayerObj (instPlayer);
+		GameManager.gameManager.setCurrentPlayerObj (instPlayer.gameObject);
+		UIManager.uiManager.setUICurrentPlayerObj (instPlayer.gameObject);
+		PlayerManager.playerManager.setPlayerCamera (instPlayer.gameObject);
+		PlayerManager.playerManager.setCurrentPlayerObj (instPlayer.gameObject);
+		UIManager.uiManager.setFaderState (false);
 	}
 
 }

@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
 		playerMovementController.move ();
 	}
 
-	//TODO: Make player manager to control player actions
 	public void isThrowing ()
 	{
 		throwing = true;
@@ -66,29 +65,14 @@ public class PlayerController : MonoBehaviour
 		throwing = false;
 	}
 
-	public void moveLeft ()
+	public PlayerMovementController getPlayerMovementController()
 	{
-		playerMovementController.movingLeft = true;
+		return this.playerMovementController;
 	}
 
-	public void cancelMoveLeft ()
+	public PlayerStats getPlayerStats()
 	{
-		playerMovementController.movingLeft = false;
-	}
-
-	public void moveRight ()
-	{
-		playerMovementController.movingRight = true;
-	}
-
-	public void cancelMoveRight ()
-	{
-		playerMovementController.movingRight = false;
-	}
-
-	public void jump ()
-	{
-		playerMovementController.canJump = true;
+		return this.playerStats;
 	}
 
 	private void throwMarker ()

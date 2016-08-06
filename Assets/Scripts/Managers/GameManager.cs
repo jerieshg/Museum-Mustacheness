@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start()
 	{
-		//TODO: Fix level loading
-		//StartCoroutine (LevelManager.levelManager.startLevel());
+		StartCoroutine (LevelManager.levelManager.startLevel());
 	}
 
 	public void setCurrentPlayerObj(GameObject playerObj)
