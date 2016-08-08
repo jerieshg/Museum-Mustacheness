@@ -5,7 +5,6 @@ using System;
 [System.Serializable]
 public class Game
 {
-	public Game current;
 	public string savedGameName;
 	public Character player;
 

@@ -65,20 +65,23 @@ public class PlayerController : MonoBehaviour
 		throwing = false;
 	}
 
-	public PlayerMovementController getPlayerMovementController()
+	public PlayerMovementController getPlayerMovementController ()
 	{
 		return this.playerMovementController;
 	}
 
-	public PlayerStats getPlayerStats()
+	public PlayerStats getPlayerStats ()
 	{
 		return this.playerStats;
 	}
 
 	private void throwMarker ()
 	{
-		marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
-		Instantiate (marker, playerCastPosition.transform.position, playerCastPosition.transform.rotation);
+		if (playerStats.markers != 0) {
+			marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
+			Instantiate (marker, playerCastPosition.transform.position, playerCastPosition.transform.rotation);
+			playerStats.markers--;
+		}
 	}
 
 	private void checkPlayerSurroundings ()
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
 		if (wallHit.collider != null && wallHit.distance < distanceToCollision) {
 			playerMovementController.isWall = true;
 			playerMovementController.canMove = false;
-		}else {
+		} else {
 			playerMovementController.canMove = true;
 		}
 	}
