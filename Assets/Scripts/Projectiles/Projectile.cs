@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System.IO;
 
-public class Marker : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
 
-	public float markerCooldown = 2f;
-	public float markerSpeed = 5f;
-	public float markerRadiusImpact = 0.2f;
+	public float projectileCooldown = 2f;
+	public float projectileSpeed = 5f;
+	public float projectileRadiusImpact = 0.2f;
 	public LayerMask hitMask;
 	public LayerMask collision;
 
@@ -32,11 +32,11 @@ public class Marker : MonoBehaviour
 	//Checks the collision type, depending on which collision it will interact differently
 	void checkCollisions ()
 	{
-		RaycastHit2D hitMob = Physics2D.CircleCast (transform.position, markerRadiusImpact, new Vector2 (0.5f, 0.5f), 0.1f, hitMask);
-		RaycastHit2D hitCol = Physics2D.CircleCast (transform.position, markerRadiusImpact, new Vector2 (0.5f, 0.5f), 0.1f, collision);
+		RaycastHit2D hitMob = Physics2D.CircleCast (transform.position, projectileRadiusImpact, new Vector2 (0.5f, 0.5f), 0.1f, hitMask);
+		RaycastHit2D hitCol = Physics2D.CircleCast (transform.position, projectileRadiusImpact, new Vector2 (0.5f, 0.5f), 0.5f, collision);
 
 		if (hitMob) {
-			if (hitMob.transform.tag == "Player" || hitMob.transform.tag == "Mob") {
+			if (hitMob.transform.CompareTag ("Player") || hitMob.transform.CompareTag ("Mob")) {
 				//Dosomething
 				Destroy (gameObject);
 			}
@@ -50,6 +50,6 @@ public class Marker : MonoBehaviour
 
 	private void travelDirection ()
 	{
-		transform.Translate (direction * Time.fixedDeltaTime * markerSpeed);
+		transform.Translate (direction * Time.fixedDeltaTime * projectileSpeed);
 	}
 }

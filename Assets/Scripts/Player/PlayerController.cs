@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
 	//Other variables
 	private float attackTimeCd = 0f;
-	private bool throwing;
 	private bool canAttack;
 
 	void Start ()
@@ -57,12 +56,16 @@ public class PlayerController : MonoBehaviour
 
 	public void isThrowing ()
 	{
-		throwing = true;
+		playerAnimationController.throwMarker = true;
 	}
 
 	public void cancelThrow ()
 	{
-		throwing = false;
+		playerAnimationController.throwMarker = false;
+	}
+
+	public void cancelHit(){
+		playerAnimationController.hit = false;
 	}
 
 	public PlayerMovementController getPlayerMovementController ()
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
 	private void throwMarker ()
 	{
 		if (playerStats.markers != 0) {
-			marker.GetComponent<Marker> ().direction = transform.right * transform.localScale.x;
+			marker.GetComponent<Projectile> ().direction = transform.right * transform.localScale.x;
 			Instantiate (marker, playerCastPosition.transform.position, playerCastPosition.transform.rotation);
 			playerStats.markers--;
 		}
@@ -103,8 +106,10 @@ public class PlayerController : MonoBehaviour
 		if (wallHit.collider != null && wallHit.distance < distanceToCollision) {
 			playerMovementController.isWall = true;
 			playerMovementController.canMove = false;
+			playerMovementController.wallSlide = true;
 		} else {
 			playerMovementController.canMove = true;
+			playerMovementController.wallSlide = false;
 		}
 	}
 
@@ -112,6 +117,6 @@ public class PlayerController : MonoBehaviour
 	{
 		playerAnimationController.walk = playerMovementController.walking;
 		playerAnimationController.jump = !playerMovementController.isGround;
-		playerAnimationController.throwMarker = throwing;
+		playerAnimationController.wallSlide = playerMovementController.wallSlide;
 	}
 }

@@ -10,6 +10,8 @@ public class PlayerAnimationController : MonoBehaviour {
 	public bool jump = false;
 	public bool attack = false;
 	public bool throwMarker = false;
+	public bool wallSlide = false;
+	public bool hit = false;
 	public bool dead = false;
 
 	void Start()
@@ -22,13 +24,10 @@ public class PlayerAnimationController : MonoBehaviour {
 		animateWalk();
 		animateJump();
 		animateAttack();
-		animateDead();
 		animateThrowMarker ();
-	}
-
-	void animateDead()
-	{
-		playerAnimator.SetBool("dead",dead);
+		animateWallSlide ();
+		animateHit ();
+		animateDead();
 	}
 
 	void animateAttack()
@@ -50,4 +49,18 @@ public class PlayerAnimationController : MonoBehaviour {
 		playerAnimator.SetBool ("throw", throwMarker);
 	}
 
+	void animateWallSlide()
+	{
+		playerAnimator.SetBool("wall slide",wallSlide);
+	}
+
+	void animateHit()
+	{
+		playerAnimator.SetBool("hit",hit);
+	}
+
+	void animateDead()
+	{
+		playerAnimator.SetBool("dead",dead);
+	}
 }

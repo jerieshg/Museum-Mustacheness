@@ -11,6 +11,7 @@ public class ChaseState : IEnemyState {
 
 
 	public void UpdateState(){
+		
 		Look ();
 		Chase ();
 	}
@@ -34,7 +35,12 @@ public class ChaseState : IEnemyState {
 		enemy.transform.rotation = new Quaternion ();//temporal
 		enemy.meshRenderer.material.color = Color.red;
 		enemy.resettingPosition = enemy.exceededDistance;
-		enemy.move (enemy.chaseTarget.position, enemy.chaseSpeed);
+		if (Vector3.Distance (enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.shootingDistance) {
+			enemy.move (enemy.chaseTarget.position, enemy.chaseSpeed);
+		} else {
+			enemy.Shoot ();
+		}
+
 	}
 
 	private void Look(){
@@ -47,5 +53,7 @@ public class ChaseState : IEnemyState {
 		} else {
 			ToAlertState ();
 		}
+
+		enemy.correctDireciton (enemy.chaseTarget.transform.position);
 	}
 }

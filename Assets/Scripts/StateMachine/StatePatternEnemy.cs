@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 
 public class StatePatternEnemy : MonoBehaviour {
 
+
 	[Header("Movement Variables")]
 	public float patrolSpeed = 4f;
 	public float chaseSpeed = 6f;
@@ -17,6 +18,12 @@ public class StatePatternEnemy : MonoBehaviour {
 	public float maxDistance = 10f;
 	public float stoppingDistance = 0.4f;
 
+	[Header("Chase State Variables")]
+	public GameObject enemyCastPosition;
+	public GameObject bullet;
+	public float shootingDistance = 4f;
+	public float fireRate = 1f;
+
 	[Header("Patrolling Waypoints")]
 	public Transform[] waypoints;
 
@@ -26,6 +33,10 @@ public class StatePatternEnemy : MonoBehaviour {
 
 	[Header("Layers")]
 	public LayerMask collisions; 
+	public LayerMask playerLayer; 
+
+	[Header("Debug")]
+	public bool forceChaseState;
 
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public bool isGoingLeft;
@@ -42,6 +53,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
 	private bool grounded;
+	private float shootingCooldown;
 
 	void Awake(){
 		chaseState = new ChaseState (this);
@@ -57,13 +69,24 @@ public class StatePatternEnemy : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (forceChaseState) {
+			currentState = chaseState;
+			chaseTarget = waypoints [1];
+		}
+
 		exceededDistance = (retrieveDistanceFromStartPosition() > maxDistance);
-	
+		isGoingLeft = (transform.localScale.x >= 0) ? false : true;
+
 		if (!resettingPosition) {
 			currentState.UpdateState ();
 		} else {
 			move (startPosition, patrolSpeed);
 			resettingPosition = (retrieveDistanceFromStartPosition() > stoppingDistance);
+		}
+
+		if (shootingCooldown > 0)
+		{
+			shootingCooldown -= Time.deltaTime;
 		}
 
 		if (wallDetected) {
@@ -85,12 +108,12 @@ public class StatePatternEnemy : MonoBehaviour {
 		transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), speed * Time.deltaTime);
 	}
 
-	public void flip(){
-		isGoingLeft = !isGoingLeft;
-
-		Vector3 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
+	public void Shoot(){
+		if (CanAttack) {
+			shootingCooldown = fireRate;
+			bullet.GetComponent<Projectile> ().direction = transform.right * transform.localScale.x;
+			Instantiate (bullet, enemyCastPosition.transform.position, enemyCastPosition.transform.rotation);
+		}
 	}
 
 	/**
@@ -106,6 +129,7 @@ public class StatePatternEnemy : MonoBehaviour {
 		}
 
 		Vector2 direction = (isGoingLeft) ? Vector2.left : Vector2.right;
+		print (direction);
 
 		hit = Physics2D.Raycast (transform.position, direction, 5f, collisions);
 
@@ -114,8 +138,27 @@ public class StatePatternEnemy : MonoBehaviour {
 		}
 	}
 
+	public void correctDireciton(Vector3 targetPosition){
+		if (chaseTarget != null) {
+			Vector3 distance = targetPosition - transform.position;
+			turnSprite ((distance.x >= 0) ? 1 : -1);
+		}
+	}
+
+	private void turnSprite(float x){
+		Vector3 scale = transform.localScale;
+		scale.x = x;
+		transform.localScale = scale;
+	}
+
 	private float retrieveDistanceFromStartPosition(){
 		return Vector3.Distance (startPosition, transform.position);
 	}
 
+	private bool CanAttack
+	{
+		get{
+			return shootingCooldown <= 0f;
+		}
+	}
 }

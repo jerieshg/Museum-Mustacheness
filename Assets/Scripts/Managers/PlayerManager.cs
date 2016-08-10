@@ -93,5 +93,4 @@ public class PlayerManager : MonoBehaviour {
 			currentPlayerControls.isThrowing ();
 		}
 	}
-
 }

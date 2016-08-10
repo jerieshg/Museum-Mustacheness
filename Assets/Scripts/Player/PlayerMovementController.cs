@@ -18,6 +18,7 @@ public class PlayerMovementController
 	public bool isGround;
 	public bool isWall;
 	public bool isLeft;
+	public bool wallSlide;
 
 
 	//UI Buttons Variables
@@ -70,7 +71,7 @@ public class PlayerMovementController
 				jump = true;
 				mPushForce = player.wallPushForce;
 			}
-
+				
 			if (jump) {
 				player.rigidBody.velocity = new Vector2 (player.rigidBody.velocity.x, 0);
 				player.rigidBody.AddForce (new Vector2 (mPushForce*-player.transform.localScale.x, mJumpForce), ForceMode2D.Impulse);
