@@ -9,15 +9,14 @@ using System.IO;
 public static class DataController
 {
 
-	public static List<Game> savedGames = new List<Game> ();
+	public static Game savedGame = new Game ();
 	private static string dataPath = Path.Combine (Application.dataPath, "mr.mustache");
 
 	public static void Save ()
 	{
-		//savedGames.Add (Game.current);
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (dataPath);
-		bf.Serialize (file, DataController.savedGames);
+		bf.Serialize (file, DataController.savedGame);
 		file.Close ();
 	}
 
@@ -26,7 +25,7 @@ public static class DataController
 		if (File.Exists (dataPath)) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (dataPath, FileMode.Open);
-			DataController.savedGames = (List<Game>)bf.Deserialize (file);
+			DataController.savedGame = (Game)bf.Deserialize (file);
 			file.Close ();
 		}
 	}
