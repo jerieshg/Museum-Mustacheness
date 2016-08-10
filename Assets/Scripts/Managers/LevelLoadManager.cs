@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class LevelLoadManager : MonoBehaviour
 {
@@ -25,7 +25,7 @@ public class LevelLoadManager : MonoBehaviour
 	IEnumerator loadSceneTimed(float time, string levelName)
 	{
 		yield return new WaitForSeconds (time);
-		EditorSceneManager.LoadScene (levelName);
+		SceneManager.LoadScene (levelName);
 	}
 
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SceneLoadingManager : MonoBehaviour {
 
@@ -13,7 +13,7 @@ public class SceneLoadingManager : MonoBehaviour {
 
 	public void reloadCurrentLevel()
 	{
-		string currentLvl = EditorSceneManager.GetActiveScene ().name;
+		string currentLvl = SceneManager.GetActiveScene ().name;
 		GameManager.gameManager.setGamePaused (false);
 		clearUIFromCamera ();
 		StartCoroutine (loadSceneTimed(3f,currentLvl));
@@ -43,7 +43,7 @@ public class SceneLoadingManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (time);
 		disableUI ();
-		EditorSceneManager.LoadScene (levelName);
+		SceneManager.LoadScene (levelName);
 	}
 
 }
