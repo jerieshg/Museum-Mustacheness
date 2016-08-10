@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 88054f3a5227c514689eeb6c162f1f3b
-timeCreated: 1470354464
+timeCreated: 1470701302
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -18,6 +18,11 @@ TextureImporter:
     21300022: Sprite_UI_BButtonPressed
     21300024: Sprite_UI_Menu
     21300026: Sprite_UI_MenuPressed
+    21300028: Sprite_UI_PauseSlide
+    21300030: Sprite_UI_BlueButton
+    21300032: Sprite_UI_BlueButtonPressed
+    21300034: Sprite_UI_AlertCon
+    21300036: Sprite_UI_AlertBar
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -81,9 +86,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 125
-        width: 80
-        height: 16
+        y: 123
+        width: 79
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -94,9 +99,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 111
-        width: 58
-        height: 12
+        y: 105
+        width: 57
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,7 +112,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 86
-        y: 115
+        y: 112
         width: 4
         height: 8
       alignment: 0
@@ -120,9 +125,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 83
-        y: 126
+        y: 124
         width: 14
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,8 +189,8 @@ TextureImporter:
       name: Sprite_UI_AButton
       rect:
         serializedVersion: 2
-        x: 192
-        y: 5
+        x: 74
+        y: 6
         width: 27
         height: 27
       alignment: 0
@@ -197,8 +202,8 @@ TextureImporter:
       name: Sprite_UI_BButton
       rect:
         serializedVersion: 2
-        x: 223
-        y: 5
+        x: 105
+        y: 6
         width: 27
         height: 27
       alignment: 0
@@ -210,8 +215,8 @@ TextureImporter:
       name: Sprite_UI_AButtonPressed
       rect:
         serializedVersion: 2
-        x: 185
-        y: 36
+        x: 67
+        y: 37
         width: 31
         height: 31
       alignment: 0
@@ -223,8 +228,8 @@ TextureImporter:
       name: Sprite_UI_BButtonPressed
       rect:
         serializedVersion: 2
-        x: 221
-        y: 36
+        x: 103
+        y: 37
         width: 31
         height: 31
       alignment: 0
@@ -237,9 +242,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 101
-        y: 127
-        width: 16
-        height: 12
+        y: 125
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +254,75 @@ TextureImporter:
       name: Sprite_UI_MenuPressed
       rect:
         serializedVersion: 2
-        x: 121
-        y: 126
-        width: 18
-        height: 14
+        x: 118
+        y: 124
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_PauseSlide
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 0
+        width: 49
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_BlueButton
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 100
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_BlueButtonPressed
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 79
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_AlertCon
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 85
+        width: 62
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI_AlertBar
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 75
+        width: 58
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

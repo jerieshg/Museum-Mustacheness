@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
 
 	public static PlayerManager playerManager;
-	public GameObject playerCamera;
 
+	private bool canControl = false;
 	private PlayerController currentPlayerControls;
 
 	void Awake()
@@ -13,21 +13,42 @@ public class PlayerManager : MonoBehaviour {
 		playerManager = this;
 	}
 
-	public void setCurrentPlayerObj(GameObject playerObj)
+	//Sets if player can be controlled
+	public void setCanControlPlayer(bool control)
 	{
-		this.currentPlayerControls = playerObj.GetComponent<PlayerController>();
+		this.canControl = control;
 	}
 
-	public void setPlayerCamera(GameObject playerObj)
+	public bool getCanControlPlayer()
 	{
-		UnityStandardAssets._2D.Camera2DFollow playerCam = playerCamera.GetComponent<UnityStandardAssets._2D.Camera2DFollow> ();
-		playerCam.target = playerObj.transform;
+		return canControl;
+	}
+
+	//Gets reference of controls from currentPlayerObj
+	public void setPlayerControls()
+	{
+		this.currentPlayerControls = GameManager.gameManager.currentPlayerObj.GetComponent<PlayerController>();
+	}
+
+	//sets the game paused depending on bool
+	public void pauseGame(bool isPaused)
+	{
+		GameManager.gameManager.setGamePaused (isPaused);
+	}
+
+	//Sets the playerCamera to follow player
+	public void setPlayerCamera()
+	{
+		Camera currentCamera = UIManager.uiManager.getSceneCamera ().GetComponent<Camera> ();
+		currentCamera.transform.position = new Vector3 (currentPlayerControls.transform.position.x,currentPlayerControls.transform.position.y,-10f);
+		UnityStandardAssets._2D.Camera2DFollow playerCam = currentCamera.GetComponent<UnityStandardAssets._2D.Camera2DFollow> ();
+		playerCam.target = GameManager.gameManager.currentPlayerObj.transform;
 		playerCam.enabled = true;
 	}
 
 	public void movePlayerRight()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.getPlayerMovementController ().movingRight = true;
 		}
@@ -35,7 +56,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void cancelMovePlayerRight()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.getPlayerMovementController ().movingRight = false;
 		}
@@ -43,7 +64,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void movePlayerLeft()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.getPlayerMovementController ().movingLeft = true;
 		}
@@ -51,7 +72,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void cancelMovePlayerLeft()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.getPlayerMovementController ().movingLeft = false;
 		}
@@ -59,7 +80,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void jumpPlayer()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.getPlayerMovementController ().canJump = true;
 		}
@@ -67,7 +88,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void throwMarker()
 	{
-		if(currentPlayerControls != null)
+		if(currentPlayerControls != null && this.canControl)
 		{
 			currentPlayerControls.isThrowing ();
 		}

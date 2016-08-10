@@ -136,11 +136,10 @@ public class GridEditor : Editor
 					selectLayer(layer);
 				}
 
-				//TODO: Must fix clear button on gridEditor
-				/*if(GUILayout.Button("Clear"))
+				if(GUILayout.Button("Clear"))
 				{
 					clearLayer (layer);
-				}*/
+				}
 
 				if (GUILayout.Button("Remove"))
 				{
@@ -149,7 +148,7 @@ public class GridEditor : Editor
 				GUILayout.EndHorizontal();
 
 				GUILayout.BeginHorizontal ();
-				currentLayer.visible = GUILayout.Toggle (currentLayer.visible, "Visible","Button");
+				currentLayer.visible = GUILayout.Toggle (currentLayer.visible, "Active","Button");
 				hideShowLayer (currentLayer.visible, layer);
 
 				currentLayer.locked = GUILayout.Toggle (currentLayer.locked, "Locked", "Button");
@@ -171,11 +170,16 @@ public class GridEditor : Editor
 	//Clears all objects from the layerObject
 	void clearLayer(GameObject layer)
 	{
-		if(layer.transform.childCount > 0 && layer.transform.childCount != 0)
+		if(layer.transform.childCount > 0)
 		{
-			Debug.Log (layer.transform.childCount);
 			for(int a = 0; a < layer.transform.childCount; a++)
 			{
+				DestroyImmediate (layer.transform.GetChild(a).gameObject);
+			}
+
+			if(layer.transform.childCount > 0)
+			{
+				clearLayer (layer);
 			}
 		}
 	}

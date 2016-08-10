@@ -9,19 +9,39 @@ public class GameManager : MonoBehaviour {
 	public GameObject currentPlayerObj;
     public difficulty gameDifficulty = difficulty.Normal;
 
+	private bool playerAlive = true;
+	private bool gamePaused = false;
+
     void Awake()
     {
         gameManager = this;
     }
 
-	void Start()
+	public void setGamePaused(bool isPaused)
 	{
-		StartCoroutine (LevelManager.levelManager.startLevel());
+		this.gamePaused = isPaused;
+		UIManager.uiManager.setPauseMenuState (isPaused);
+		UIManager.uiManager.setPlayerInfoState (!isPaused);
+		UIManager.uiManager.setPlayerControlsState (!isPaused);
+
+		if (gamePaused)
+		{
+			Time.timeScale = 0f;
+		}
+		else
+		{
+			Time.timeScale = 1f;
+		}
 	}
 
 	public void setCurrentPlayerObj(GameObject playerObj)
 	{
 		currentPlayerObj = playerObj;
+	}
+
+	public bool getPlayerAliveState()
+	{
+		return this.playerAlive;
 	}
 
 	//Changes values depending on difficulty

@@ -55,6 +55,7 @@ public class AlarmManager : MonoBehaviour
 		}
 	}
 
+	//Checks all the cameras, if one of the cameras have a target then trigger the alarms/refresh alarms
 	bool checkIfCameraHasTarget()
 	{
 		if(cameraContainerObject.transform.childCount > 0 && cameraContainerObject.transform.childCount != 0)
@@ -71,13 +72,13 @@ public class AlarmManager : MonoBehaviour
 		return false;
 	}
 
+	//Deactivates the alarms with a delay
 	IEnumerator deactivateAlarmDelay()
 	{
 		yield return new WaitForSeconds (loseTargetDelay);
 		Debug.Log ("Stopping Alarms");
 		AlarmOn = false;
 	}
-
 
 }
 
