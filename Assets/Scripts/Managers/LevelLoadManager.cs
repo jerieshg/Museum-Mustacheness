@@ -18,14 +18,7 @@ public class LevelLoadManager : MonoBehaviour
 
 	public void loadLevel(string levelName)
 	{
-		UIManager.uiManager.setFaderState (true);
-		StartCoroutine (loadSceneTimed(3f,levelName));
-	}
-
-	IEnumerator loadSceneTimed(float time, string levelName)
-	{
-		yield return new WaitForSeconds (time);
-		SceneManager.LoadScene (levelName);
+		SceneLoadingManager.sceneLoader.loadLevel (levelName);
 	}
 
 }

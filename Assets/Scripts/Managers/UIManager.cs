@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 	public Animator counterAnim;
 	public GameObject pauseUICon;
 	public GameObject counterUICon;
+	public GameObject loadingCon;
 
 	[Header ("General UI Elements")]
 	public Animator faderAnimator;
@@ -37,6 +38,11 @@ public class UIManager : MonoBehaviour
 	void Update ()
 	{
 		UpdatePlayerInfo ();
+	}
+
+	public void setLoadingActive(bool isActive)
+	{
+		loadingCon.SetActive (isActive);
 	}
 
 	public void setPauseMenuState(bool state)
@@ -103,9 +109,10 @@ public class UIManager : MonoBehaviour
 	{
 		if (currentPlayerObj != null)
 		{
+			PlayerController pp = currentPlayerObj.GetComponent<PlayerController> ();
 			//Debug.Log ("<color=green><b>PlayerPrefab Detected</b></color>");
-			scoreText.text = "Score: " + currentPlayerObj.GetComponent<PlayerController> ().score;
-			markerText.text = "X" + currentPlayerObj.GetComponent<PlayerController> ().markers;
+			scoreText.text = "Score: " + pp.getPlayerStats().score;
+			markerText.text = "X" + pp.getPlayerStats().markers;
 		} 
 		else
 		{

@@ -70,6 +70,7 @@ public class LevelManager : MonoBehaviour
 
 		Debug.Log ("(5) -- Enabling start counter --");
 		UIManager.uiManager.setCounterState (true);
+		UIManager.uiManager.setLoadingActive (false);
 		UIManager.uiManager.setFaderState (false);
 
 		Debug.Log("<b>----- Setup Complete -----</b>");

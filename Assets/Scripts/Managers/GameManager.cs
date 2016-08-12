@@ -14,7 +14,14 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
-        gameManager = this;
+		if (gameManager == null)
+		{
+			gameManager = this;
+		}
+		else
+		{
+			Destroy (gameManager.transform.parent.gameObject);
+		}
     }
 
 	public void setGamePaused(bool isPaused)

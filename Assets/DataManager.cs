@@ -5,7 +5,12 @@ using UnityEngine.UI;
 public class DataManager : MonoBehaviour
 {
 
-	public Text text;
+	public static DataManager dataManager;
+
+	void Awake()
+	{
+		dataManager = this;
+	}
 
 	// Use this for initialization
 	void Start ()

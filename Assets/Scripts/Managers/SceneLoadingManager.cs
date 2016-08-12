@@ -16,7 +16,7 @@ public class SceneLoadingManager : MonoBehaviour {
 		string currentLvl = SceneManager.GetActiveScene ().name;
 		GameManager.gameManager.setGamePaused (false);
 		clearUIFromCamera ();
-		StartCoroutine (loadSceneTimed(3f,currentLvl));
+		StartCoroutine (loadSceneTimed(1f,currentLvl));
 	}
 
 	void clearUIFromCamera()
@@ -36,13 +36,14 @@ public class SceneLoadingManager : MonoBehaviour {
 	{
 		clearUIFromCamera ();
 		GameManager.gameManager.setGamePaused (false);
-		StartCoroutine (loadSceneTimed(3f,levelName));
+		StartCoroutine (loadSceneTimed(1f,levelName));
 	}
 
 	IEnumerator loadSceneTimed(float time, string levelName)
 	{
 		yield return new WaitForSeconds (time);
 		disableUI ();
+		UIManager.uiManager.setLoadingActive (true);
 		SceneManager.LoadScene (levelName);
 	}
 

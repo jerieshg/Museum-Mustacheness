@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0645816ac56536c44abe11c82ea0dbb4
-timeCreated: 1470692965
+timeCreated: 1470911003
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,13 @@ TextureImporter:
     21300004: Sprite_UI2_One
     21300006: Sprite_UI2_GO
     21300008: Sprite_UI2_Banner
+    21300010: Sprite_UI2_Results
+    21300012: Sprite_UI2_Loading
+    21300014: Sprite_UI2_MLoading
+    21300016: Sprite_UI2_MLoading2
+    21300018: Sprite_UI2_MLoading3
+    21300020: Sprite_UI2_Grey
+    21300022: Sprite_UI2_Red
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -63,65 +70,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite_UI2_Three
+      name: Sprite_UI2_Results
       rect:
         serializedVersion: 2
-        x: 6
-        y: 47
-        width: 21
-        height: 36
+        x: 125
+        y: 4
+        width: 69
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_UI2_Two
+      name: Sprite_UI2_Loading
       rect:
         serializedVersion: 2
-        x: 29
-        y: 47
-        width: 22
-        height: 36
+        x: 212
+        y: 4
+        width: 30
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_UI2_One
+      name: Sprite_UI2_MLoading
       rect:
         serializedVersion: 2
-        x: 56
-        y: 47
-        width: 22
-        height: 36
+        x: 201
+        y: 19
+        width: 52
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_UI2_GO
+      name: Sprite_UI2_MLoading2
       rect:
         serializedVersion: 2
-        x: 90
-        y: 36
-        width: 78
-        height: 46
+        x: 201
+        y: 39
+        width: 52
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprite_UI2_Banner
+      name: Sprite_UI2_MLoading3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 87
-        width: 256
-        height: 49
+        x: 201
+        y: 59
+        width: 52
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI2_Grey
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 128
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_UI2_Red
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 128
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

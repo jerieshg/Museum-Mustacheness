@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5a25e9a8eee38d348b6a6aa75a7daae7
-timeCreated: 1469754963
+timeCreated: 1470990633
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,16 @@ TextureImporter:
     21300002: Sprites_Proyectiles_1
     21300004: Sprites_Proyectiles_2
     21300006: Sprites_Proyectiles_3
+    21300008: Sprite_Proyectiles_0
+    21300010: Sprite_Proyectiles_1
+    21300012: Sprite_Proyectiles_2
+    21300014: Sprite_Proyectiles_3
+    21300016: Sprite_Proyectiles_4
+    21300018: Sprite_Proyectiles_5
+    21300020: Sprite_Proyectiles_6
+    21300022: Sprite_Proyectiles_7
+    21300024: Sprite_Proyectiles_8
+    21300026: Sprite_Proyectiles_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -67,7 +77,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprites_Proyectiles_0
+      name: Sprite_Proyectiles_0
       rect:
         serializedVersion: 2
         x: 0
@@ -75,12 +85,12 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprites_Proyectiles_1
+      name: Sprite_Proyectiles_1
       rect:
         serializedVersion: 2
         x: 16
@@ -91,9 +101,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprites_Proyectiles_2
+      name: Sprite_Proyectiles_2
       rect:
         serializedVersion: 2
         x: 0
@@ -101,12 +111,12 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: Sprites_Proyectiles_3
+      name: Sprite_Proyectiles_3
       rect:
         serializedVersion: 2
         x: 16
@@ -117,7 +127,85 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprite_Proyectiles_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
