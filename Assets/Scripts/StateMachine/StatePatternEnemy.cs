@@ -11,7 +11,8 @@ public class StatePatternEnemy : MonoBehaviour {
 	public float chaseSpeed = 6f;
 	public float jumpForce = 40f;
 
-	[Header("Alert State Variables")]
+	[Header("Patrol & Alert State Variables")]
+	public float stateChangeDuration = 4f;
 	public float searchingTurnSpeed = 120f;
 	public float searchingDuration = 4f;
 	public float sightRange = 20f;
@@ -49,6 +50,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	[HideInInspector] public bool exceededDistance;
 	[HideInInspector] public bool resettingPosition;
 	[HideInInspector] public Vector3 startPosition;
+	[HideInInspector] public RaycastHit2D hitInfo;
 
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
@@ -76,6 +78,7 @@ public class StatePatternEnemy : MonoBehaviour {
 
 		exceededDistance = (retrieveDistanceFromStartPosition() > maxDistance);
 		isGoingLeft = (transform.localScale.x >= 0) ? false : true;
+		hitInfo = GetComponent<DrawCircle> ().hitInfo;
 
 		if (!resettingPosition) {
 			currentState.UpdateState ();

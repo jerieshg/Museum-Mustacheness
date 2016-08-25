@@ -5,13 +5,14 @@ public class PatrolState : IEnemyState {
 
 	private readonly StatePatternEnemy enemy;
 	private int nextWaypoint;
+	private float alertTimer;
 
 	public PatrolState(StatePatternEnemy statePatternEnemy){
 		enemy = statePatternEnemy;
 	}
 
 	public void UpdateState(){
-		
+		Sense ();
 		Look ();
 		Patrol ();
 	}
@@ -28,6 +29,7 @@ public class PatrolState : IEnemyState {
 
 	public void ToAlertState(){
 		enemy.currentState = enemy.alertState;
+		alertTimer = 0;
 	}
 
 	public void ToChaseState(){
@@ -41,6 +43,15 @@ public class PatrolState : IEnemyState {
 		if(hit.collider != null && hit.collider.CompareTag ("Player")){
 			enemy.chaseTarget = hit.transform;
 			ToChaseState ();
+		}
+	}
+
+	private void Sense(){
+		alertTimer += Time.deltaTime;
+
+		if ( alertTimer >= enemy.stateChangeDuration &&
+			enemy.hitInfo.collider != null && enemy.hitInfo.collider.CompareTag ("Player")) {
+			ToAlertState ();
 		}
 	}
 
