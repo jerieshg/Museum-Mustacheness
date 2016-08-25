@@ -24,7 +24,9 @@ public class ChaseState : IEnemyState {
 	}
 
 	public void ToAlertState(){
+		enemy.animationController.attack = false;
 		enemy.currentState = enemy.alertState;
+		Debug.Log ("Going to alert state");
 	}
 
 	public void ToChaseState(){
@@ -32,13 +34,12 @@ public class ChaseState : IEnemyState {
 	}
 
 	private void Chase(){
-		enemy.transform.rotation = new Quaternion ();//temporal
-		enemy.meshRenderer.material.color = Color.red;
 		enemy.resettingPosition = enemy.exceededDistance;
 		if (Vector3.Distance (enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.shootingDistance) {
 			enemy.move (enemy.chaseTarget.position, enemy.chaseSpeed);
+			enemy.animationController.attack = false;
 		} else {
-			enemy.Shoot ();
+			enemy.animationController.attack = true;
 		}
 
 	}
@@ -54,6 +55,6 @@ public class ChaseState : IEnemyState {
 			ToAlertState ();
 		}
 
-		enemy.correctDireciton (enemy.chaseTarget.transform.position);
+		enemy.correctDirection (enemy.chaseTarget.transform.position);
 	}
 }

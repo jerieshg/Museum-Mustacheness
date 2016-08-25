@@ -23,7 +23,6 @@ public class StatePatternEnemy : MonoBehaviour {
 	public GameObject enemyCastPosition;
 	public GameObject bullet;
 	public float shootingDistance = 4f;
-	public float fireRate = 1f;
 
 	[Header("Patrolling Waypoints")]
 	public Transform[] waypoints;
@@ -51,6 +50,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	[HideInInspector] public bool resettingPosition;
 	[HideInInspector] public Vector3 startPosition;
 	[HideInInspector] public RaycastHit2D hitInfo;
+	[HideInInspector] public EnemyAnimationController animationController;
 
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
@@ -63,7 +63,7 @@ public class StatePatternEnemy : MonoBehaviour {
 		patrolState = new PatrolState (this);
 		rigidBody = GetComponent<Rigidbody2D> ();
 		startPosition = transform.position;
-		meshRenderer = GetComponent<MeshRenderer> ();//debug
+		animationController = GetComponent<EnemyAnimationController> ();
 	}
 
 	void Start () {
@@ -87,11 +87,6 @@ public class StatePatternEnemy : MonoBehaviour {
 			resettingPosition = (retrieveDistanceFromStartPosition() > stoppingDistance);
 		}
 
-		if (shootingCooldown > 0)
-		{
-			shootingCooldown -= Time.deltaTime;
-		}
-
 		if (wallDetected) {
 			if (grounded) {
 				rigidBody.AddForce (new Vector2 (0f, jumpForce));
@@ -112,11 +107,8 @@ public class StatePatternEnemy : MonoBehaviour {
 	}
 
 	public void Shoot(){
-		if (CanAttack) {
-			shootingCooldown = fireRate;
-			bullet.GetComponent<Projectile> ().direction = transform.right * transform.localScale.x;
-			Instantiate (bullet, enemyCastPosition.transform.position, enemyCastPosition.transform.rotation);
-		}
+		bullet.GetComponent<Projectile> ().direction = transform.right * -transform.localScale.x;
+		Instantiate (bullet, enemyCastPosition.transform.position, enemyCastPosition.transform.rotation);
 	}
 
 	/**
@@ -141,11 +133,11 @@ public class StatePatternEnemy : MonoBehaviour {
 		}
 	}
 
-	public void correctDireciton(Vector3 targetPosition){
-		if (chaseTarget != null) {
+	public void correctDirection(Vector3 targetPosition){
+//		if (chaseTarget != null) {
 			Vector3 distance = targetPosition - transform.position;
-			turnSprite ((distance.x >= 0) ? 1 : -1);
-		}
+			turnSprite ((-distance.x >= 0) ? 1 : -1);
+//		}
 	}
 
 	private void turnSprite(float x){
@@ -156,12 +148,5 @@ public class StatePatternEnemy : MonoBehaviour {
 
 	private float retrieveDistanceFromStartPosition(){
 		return Vector3.Distance (startPosition, transform.position);
-	}
-
-	private bool CanAttack
-	{
-		get{
-			return shootingCooldown <= 0f;
-		}
 	}
 }
