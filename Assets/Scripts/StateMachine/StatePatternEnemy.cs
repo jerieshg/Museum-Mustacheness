@@ -140,9 +140,15 @@ public class StatePatternEnemy : MonoBehaviour {
 //		}
 	}
 
-	private void turnSprite(float x){
+	public void turnSprite(float x){
 		Vector3 scale = transform.localScale;
 		scale.x = x;
+		transform.localScale = scale;
+	}
+
+	public void turnSprite(){
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
 		transform.localScale = scale;
 	}
 

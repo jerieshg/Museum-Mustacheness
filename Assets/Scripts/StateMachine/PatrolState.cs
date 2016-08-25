@@ -37,7 +37,7 @@ public class PatrolState : IEnemyState {
 	private void Look(){
 		Vector3 direction = (enemy.rigidBody.velocity.x > 0) ? Vector3.right : Vector3.left;
 		RaycastHit2D hit = Physics2D.Raycast (enemy.eyes.transform.position, direction, enemy.sightRange);
-		Debug.Log (hit.collider);
+
 		if(hit.collider != null && hit.collider.CompareTag ("Player")){
 			enemy.chaseTarget = hit.transform;
 			enemy.animationController.patrolWalk = false;
@@ -51,7 +51,7 @@ public class PatrolState : IEnemyState {
 		if ( alertTimer >= enemy.stateChangeDuration &&
 			enemy.hitInfo.collider != null && enemy.hitInfo.collider.CompareTag ("Player")) {
 			enemy.animationController.patrolWalk = false;
-//			ToAlertState ();
+			ToAlertState ();
 		}
 	}
 

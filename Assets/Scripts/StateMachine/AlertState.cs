@@ -5,6 +5,7 @@ public class AlertState : IEnemyState {
 
 	private readonly StatePatternEnemy enemy;
 	private float searchTimer;
+	private float rotateTimer;
 
 	public AlertState(StatePatternEnemy statePatternEnemy){
 		enemy = statePatternEnemy;
@@ -35,12 +36,13 @@ public class AlertState : IEnemyState {
 
 	private void Search(){
 		enemy.transform.position = new Vector2 (enemy.transform.position.x,enemy.transform.position.y);//stops the player
-		enemy.transform.Rotate (0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
 		searchTimer += Time.deltaTime;
+		rotateTimer += Time.deltaTime;
 
 		if (searchTimer >= enemy.searchingDuration) {
-			enemy.transform.rotation = new Quaternion ();
 			ToPatrolState ();
+		} else if (rotateTimer >= 2f) {
+			enemy.turnSprite ();
 		}
 	}
 
