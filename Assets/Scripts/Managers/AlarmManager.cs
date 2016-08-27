@@ -13,6 +13,9 @@ public class AlarmManager : MonoBehaviour
 
 	private GameObject cameraContainerObject;		//Contains all the cameras of the level
 	private bool triggeredAlarm = false;			//Sets if the alarm has being triggered by player
+	private float currentAlarmTime;
+	private float maxAlarmTime;
+
 
 	void Awake()
 	{
@@ -27,20 +30,41 @@ public class AlarmManager : MonoBehaviour
 	void Update()
 	{
 		levelAlarmLogic ();
+		updateAlarmIndicator ();
+	}
+
+	void updateAlarmIndicator()
+	{
+		if (AlarmOn) 
+		{
+			this.currentAlarmTime -= Time.deltaTime;
+			float currentTimeRounded = Mathf.Round (currentAlarmTime);
+			UIManager.uiManager.setAlarmIndcProperties ( currentTimeRounded + "s", currentAlarmTime / maxAlarmTime);
+			UIManager.uiManager.setAlarmIndicatorActive (true);
+		}
+		else
+		{
+			UIManager.uiManager.setAlarmIndicatorActive (false);
+		}
+	}
+
+	public void setAlarmManagerProperties()
+	{
+		this.currentAlarmTime = loseTargetDelay;
+		this.maxAlarmTime = loseTargetDelay;
 	}
 
 	//Controls the alarms depending if target is on vision or lost
 	void levelAlarmLogic()
 	{
-		checkIfCameraHasTarget ();
-
-		targetOnSight = checkIfCameraHasTarget ();
+		this.targetOnSight = checkIfCameraHasTarget ();
 
 		//If target is on camera vision then sets up the alarm continously
 		if (targetOnSight)
 		{
-			AlarmOn = true;
-			triggeredAlarm = true;
+			this.AlarmOn = true;
+			this.triggeredAlarm = true;
+			currentAlarmTime = this.loseTargetDelay;
 			//Cancels the deactivate alarm delay
 			StopAllCoroutines ();
 		}
@@ -49,7 +73,7 @@ public class AlarmManager : MonoBehaviour
 			//If target is lost then the deactivate alarm delay starts
 			if(triggeredAlarm)
 			{
-				triggeredAlarm = false;
+				this.triggeredAlarm = false;
 				StartCoroutine (deactivateAlarmDelay ());
 			}
 		}
@@ -77,7 +101,7 @@ public class AlarmManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds (loseTargetDelay);
 		Debug.Log ("Stopping Alarms");
-		AlarmOn = false;
+		this.AlarmOn = false;
 	}
 
 }

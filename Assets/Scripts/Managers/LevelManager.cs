@@ -8,12 +8,14 @@ public class LevelManager : MonoBehaviour
 
 	public GameObject CameraContainer;
 	public GameObject AIContainer;
-	public GameObject startEndCon;	
+	public GameObject startEndCon;
+	public GameObject artCon;
 
 	[HideInInspector] public GameObject startPos;
 	[HideInInspector] public GameObject endPos;
 
 	private bool levelEnded = false;
+	[SerializeField] private int levelMaxScore;
 
 	void Awake()
 	{
@@ -43,6 +45,23 @@ public class LevelManager : MonoBehaviour
 		CameraContainer.SetActive (true);
 	}
 
+	int getMaximunLevelScore()
+	{
+		if (artCon.transform.childCount > 0 && artCon.transform.childCount != 0)
+		{
+			int artScoreSum = 0;
+			for (int a = 0; a < artCon.transform.childCount; a++)
+			{
+				artScoreSum += artCon.transform.GetChild (a).GetComponent<ArtObj> ().getArtScore ();
+			}
+			return artScoreSum;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 	//Setting up the level
 	public IEnumerator setupLevel()
 	{
@@ -51,22 +70,26 @@ public class LevelManager : MonoBehaviour
 
 		yield return new WaitForSeconds (2f);
 
-		Debug.Log ("(1) -- Setting playerObj and GameManager currentPlayerObj -- ");
+		Debug.Log ("(1) -- Setting Difficulty and GameManager currentPlayerObj -- ");
 		GameObject instPlayer = Instantiate (GameManager.gameManager.playerPrefab, startPos.transform.position, startPos.transform.rotation) as GameObject;
 		GameManager.gameManager.setCurrentPlayerObj (instPlayer.gameObject);
 		GameManager.gameManager.setGamePaused (true);
+		GameManager.gameManager.setDifficulty (GameManager.gameManager.getGameDifficulty());
 
-		Debug.Log ("(2) -- Setting SceneCamera and currentPlayerObj UI -- ");
+
+		Debug.Log ("(2) -- Setting SceneCamera and PlayerUI -- ");
 		UIManager.uiManager.setUIState (true);
 		UIManager.uiManager.findSceneCamera ();
 		UIManager.uiManager.getUICurrentPlayerObj ();
 
-		Debug.Log ("(3) -- Setting cameraFollow to currentPlayerObj -- ");
+		Debug.Log ("(3) -- Setting cameraFollow Properties -- ");
 		PlayerManager.playerManager.setPlayerControls ();
 		PlayerManager.playerManager.setPlayerCamera ();
 
-		Debug.Log ("(4) -- Enabling Alarms and Mobs --");
+		Debug.Log ("(4) -- Setting level mobs, alarms and properties --");
+		AlarmManager.alarmManager.setAlarmManagerProperties ();
 		enablesAIFromLevel ();
+		levelMaxScore = getMaximunLevelScore ();
 
 		Debug.Log ("(5) -- Enabling start counter --");
 		UIManager.uiManager.setCounterState (true);

@@ -9,6 +9,10 @@ public class ReferenceManager : MonoBehaviour
 	[Header("Projectiles")]
 	public GameObject bullet;
 	public GameObject marker;
+	[Header("Materials")]
+	public Material whiteOutline;
+	public Material redOutline;
+	public Material normalSprite;
 
 	void Awake()
 	{

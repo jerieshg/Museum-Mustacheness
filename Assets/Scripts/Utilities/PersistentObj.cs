@@ -6,7 +6,7 @@ public class PersistentObj : MonoBehaviour
 
 	void Awake()
 	{
-		DontDestroyOnLoad (this);
+		DontDestroyOnLoad (gameObject);
 	}
 
 }

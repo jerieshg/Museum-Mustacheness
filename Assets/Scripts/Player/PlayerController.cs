@@ -73,9 +73,34 @@ public class PlayerController : MonoBehaviour
 		return this.playerMovementController;
 	}
 
-	public PlayerStats getPlayerStats ()
+	public int getScore()
 	{
-		return this.playerStats;
+		return this.playerStats.score;
+	}
+
+	public void setScore(int sc)
+	{
+		this.playerStats.score = sc;
+
+		if(this.playerStats.score <= 0)
+		{
+			this.playerStats.score = 0;
+		}
+	}
+
+	public void setMarkers(int mkr)
+	{
+		this.playerStats.markers = mkr;
+
+		if(this.playerStats.markers <= 0)
+		{
+			this.playerStats.markers = 0;
+		}
+	}
+
+	public int getMarkers()
+	{
+		return this.playerStats.markers;
 	}
 
 	private void throwMarker ()

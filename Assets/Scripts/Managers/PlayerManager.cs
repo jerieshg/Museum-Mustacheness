@@ -13,6 +13,28 @@ public class PlayerManager : MonoBehaviour {
 		playerManager = this;
 	}
 
+	public void addScore(int scoreToAdd)
+	{
+		int modifiedScore = currentPlayerControls.getScore () + scoreToAdd;
+		currentPlayerControls.setScore (modifiedScore);
+	}
+
+	public void subtract(int scoreToSub)
+	{
+		int modifiedScore = currentPlayerControls.getScore () - scoreToSub;
+		currentPlayerControls.setScore (modifiedScore);
+	}
+
+	public int getScore()
+	{
+		return currentPlayerControls.getScore ();
+	}
+
+	public int getMarker()
+	{
+		return currentPlayerControls.getMarkers ();
+	}
+
 	//Sets if player can be controlled
 	public void setCanControlPlayer(bool control)
 	{

@@ -11,6 +11,7 @@ public class CameraAI : MonoBehaviour
 
 	private Animator cameraAnimator;
 	private bool canTurnCamera = true;
+	private bool penaltyApplied = false;
 
 	void Awake ()
 	{
@@ -28,6 +29,7 @@ public class CameraAI : MonoBehaviour
 	{
 		trackTurnTime();
 		checkIfCollisionsHaveTarget ();
+		changeMaterialIfAlarmTriggered ();
 
 		if (canTurnCamera)
 		{
@@ -60,6 +62,7 @@ public class CameraAI : MonoBehaviour
 			targetOnSight = true;
 			cameraAnimator.SetBool("RotateLeft", true);
 			cameraAnimator.SetBool("RotateRight", false);
+			applyPenalty ();
 		}
 		else if(cameraVisionColliders [1].hitInfo)
 		{
@@ -67,11 +70,35 @@ public class CameraAI : MonoBehaviour
 			targetOnSight = true;
 			cameraAnimator.SetBool("RotateLeft", false);
 			cameraAnimator.SetBool("RotateRight", true);
+			applyPenalty ();
 		}
 		else 
 		{
 			targetOnSight = false;
 			canTurnCamera = true;
+			this.penaltyApplied = false;
+		}
+	}
+
+	void applyPenalty()
+	{
+		if(!this.penaltyApplied)
+		{
+			this.penaltyApplied = true;
+			PlayerManager.playerManager.subtract ( 100 * GameManager.gameManager.getDifMultiplier());
+		}
+	}
+
+	//Changes the material if alarm is triggered
+	void changeMaterialIfAlarmTriggered()
+	{
+		if (AlarmManager.alarmManager.AlarmOn)
+		{
+			GetComponent<SpriteRenderer> ().material = ReferenceManager.referenceManager.redOutline;
+		} 
+		else
+		{
+			GetComponent<SpriteRenderer> ().material = ReferenceManager.referenceManager.whiteOutline;
 		}
 	}
 

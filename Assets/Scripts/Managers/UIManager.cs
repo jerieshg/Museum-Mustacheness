@@ -20,12 +20,13 @@ public class UIManager : MonoBehaviour
 	public Animator faderAnim;
 	public Animator pauseMenuAnim;
 	public Animator counterAnim;
+	public Animator alarmIndicatorAnim;
 	public GameObject pauseUICon;
 	public GameObject counterUICon;
 	public GameObject loadingCon;
-
-	[Header ("General UI Elements")]
-	public Animator faderAnimator;
+	public GameObject alarmIndicatorCon;
+	public Text AlarmIndcText;
+	public Image AlarmIndcBar;
 
 	private GameObject currentPlayerObj;
 	private GameObject currentSceneCam;
@@ -40,23 +41,40 @@ public class UIManager : MonoBehaviour
 		UpdatePlayerInfo ();
 	}
 
+	public void setAlarmIndcProperties(string alarmText, float fillBarAmount)
+	{
+		AlarmIndcText.text = alarmText;
+		AlarmIndcBar.fillAmount = fillBarAmount;
+	}
+
+	//Sets if alarm indicator is on or off
+	public void setAlarmIndicatorActive(bool isActive)
+	{
+		alarmIndicatorAnim.SetBool ("On",isActive);
+	}
+
+	//Enables or disables loadingImage depending on bool
 	public void setLoadingActive(bool isActive)
 	{
 		loadingCon.SetActive (isActive);
 	}
 
+	//Sets if pausemenu is on or off
 	public void setPauseMenuState(bool state)
 	{
 		pauseMenuAnim.SetBool ("On",state);
 	}
 
+	//Disables or enables UI depending on bool
 	public void setUIState(bool state)
 	{
 		playerUICon.SetActive (state);
 		pauseUICon.SetActive (state);
 		counterUICon.SetActive (state);
+		alarmIndicatorCon.SetActive (state);
 	}
 
+	//Sets if counter is on or off
 	public void setCounterState(bool state)
 	{
 		counterAnim.SetBool ("Trigger",state);
@@ -110,14 +128,9 @@ public class UIManager : MonoBehaviour
 		if (currentPlayerObj != null)
 		{
 			PlayerController pp = currentPlayerObj.GetComponent<PlayerController> ();
-			//Debug.Log ("<color=green><b>PlayerPrefab Detected</b></color>");
-			scoreText.text = "Score: " + pp.getPlayerStats().score;
-			markerText.text = "X" + pp.getPlayerStats().markers;
+			scoreText.text = "Score: " + pp.getScore();
+			markerText.text = "X" + pp.getMarkers();
 		} 
-		else
-		{
-			//Debug.Log ("<color=red><b>PlayerPrefab Not Found.</b></color>");
-		}
 	}
 
 	//Sets the current player obj as reference

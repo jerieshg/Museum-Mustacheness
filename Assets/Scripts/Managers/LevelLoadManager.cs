@@ -14,6 +14,7 @@ public class LevelLoadManager : MonoBehaviour
 	void Start()
 	{
 		UIManager.uiManager.setFaderState (false);
+		UIManager.uiManager.setLoadingActive (false);
 	}
 
 	public void loadLevel(string levelName)

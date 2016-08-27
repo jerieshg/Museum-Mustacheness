@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-    public static GameManager gameManager;
+    public static GameManager gameManager = null;
 
 	public GameObject playerPrefab;
 	public GameObject currentPlayerObj;
@@ -11,17 +11,11 @@ public class GameManager : MonoBehaviour {
 
 	private bool playerAlive = true;
 	private bool gamePaused = false;
+	private int difMultiplier;
 
     void Awake()
     {
-		if (gameManager == null)
-		{
-			gameManager = this;
-		}
-		else
-		{
-			Destroy (gameManager.transform.parent.gameObject);
-		}
+		gameManager = this;
     }
 
 	public void setGamePaused(bool isPaused)
@@ -51,16 +45,33 @@ public class GameManager : MonoBehaviour {
 		return this.playerAlive;
 	}
 
+	public difficulty getGameDifficulty()
+	{
+		return this.gameDifficulty;
+	}
+
+	public int getDifMultiplier()
+	{
+		if (difMultiplier == null || difMultiplier == 0) 
+		{
+			return UtilityMoustache.ScoreManagment.getDifficultyMultiplier (gameDifficulty);
+		} 
+		else 
+		{
+			return this.difMultiplier;
+		}
+	}
+
 	//Changes values depending on difficulty
 	public void setDifficulty(difficulty newDifficulty)
 	{
 		gameDifficulty = newDifficulty;
+		difMultiplier = UtilityMoustache.ScoreManagment.getDifficultyMultiplier (gameDifficulty);
 
 		switch (gameDifficulty)
 		{
 		case difficulty.Normal:
 			AlarmManager.alarmManager.loseTargetDelay = 5f;
-
 			break;
 		case difficulty.Hard:
 			AlarmManager.alarmManager.loseTargetDelay = 7f;

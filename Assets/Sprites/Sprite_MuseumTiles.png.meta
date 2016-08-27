@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: da4214efa6caece4982e176a3266a7c9
-timeCreated: 1470361846
+timeCreated: 1471159868
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -862,9 +862,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 208
-        y: 400
+        y: 384
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -875,9 +875,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 400
+        y: 384
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -888,9 +888,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 400
+        y: 384
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -901,9 +901,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 400
+        y: 384
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -940,58 +940,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 384
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Sprite_MuseumTiles_63
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 384
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Sprite_MuseumTiles_64
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 384
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Sprite_MuseumTiles_65
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 384
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Sprite_MuseumTiles_66
-      rect:
-        serializedVersion: 2
-        x: 256
         y: 384
         width: 16
         height: 16
