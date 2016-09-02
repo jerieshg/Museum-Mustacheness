@@ -142,7 +142,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	public void correctDirection(Vector3 targetPosition){
 //		if (chaseTarget != null) {
 			Vector3 distance = targetPosition - transform.position;
-			turnSprite ((-distance.x >= 0) ? 1 : -1);
+			turnSprite ((distance.x >= 0) ? 1 : -1);
 //		}
 	}
 
