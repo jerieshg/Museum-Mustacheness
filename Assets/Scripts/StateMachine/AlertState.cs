@@ -23,6 +23,7 @@ public class AlertState : IEnemyState {
 	public void ToPatrolState(){
 		enemy.currentState = enemy.patrolState;
 		searchTimer = 0;
+		rotateTimer = enemy.searchingRotateDuration;
 	}
 
 	public void ToAlertState(){
@@ -41,8 +42,9 @@ public class AlertState : IEnemyState {
 
 		if (searchTimer >= enemy.searchingDuration) {
 			ToPatrolState ();
-		} else if (rotateTimer >= 2f) {
+		} else if (rotateTimer >= enemy.searchingRotateDuration) {
 			enemy.turnSprite ();
+			rotateTimer = 0;
 		}
 	}
 

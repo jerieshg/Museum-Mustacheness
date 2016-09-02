@@ -15,6 +15,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	public float stateChangeDuration = 4f;
 	public float searchingTurnSpeed = 120f;
 	public float searchingDuration = 4f;
+	public float searchingRotateDuration = 2f;
 	public float sightRange = 20f;
 	public float maxDistance = 10f;
 	public float stoppingDistance = 0.4f;
