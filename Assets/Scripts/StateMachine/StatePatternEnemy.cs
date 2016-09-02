@@ -52,6 +52,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	[HideInInspector] public Vector3 startPosition;
 	[HideInInspector] public RaycastHit2D hitInfo;
 	[HideInInspector] public EnemyAnimationController animationController;
+	[HideInInspector] public RaycastHit2D eyesHitInfo;
 
 	const float distanceToCollision = 0.8f;
 	private bool wallDetected;
@@ -77,9 +78,13 @@ public class StatePatternEnemy : MonoBehaviour {
 			chaseTarget = waypoints [1];
 		}
 
+		eyes.GetComponent<DrawLine> ().XLineDirection = sightRange;
+
+
 		exceededDistance = (retrieveDistanceFromStartPosition() > maxDistance);
 		isGoingLeft = (transform.localScale.x >= 0) ? false : true;
 		hitInfo = GetComponent<DrawCircle> ().hitInfo;
+		eyesHitInfo = eyes.GetComponent<DrawLine> ().hitInfo;
 
 		if (!resettingPosition) {
 			currentState.UpdateState ();

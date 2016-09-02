@@ -11,7 +11,6 @@ public class ChaseState : IEnemyState {
 
 
 	public void UpdateState(){
-		
 		Look ();
 		Chase ();
 	}
@@ -47,10 +46,8 @@ public class ChaseState : IEnemyState {
 	private void Look(){
 		Vector3 enemyToTarget = (enemy.chaseTarget.position + enemy.offset) - enemy.eyes.transform.position;
 
-		RaycastHit2D hit = Physics2D.Raycast (enemy.eyes.transform.position, enemyToTarget, enemy.sightRange);
-
-		if (hit.collider != null && hit.collider.CompareTag ("Player")) {
-			enemy.chaseTarget = hit.transform;
+		if (enemy.eyesHitInfo.collider != null && enemy.eyesHitInfo.collider.CompareTag ("Player")) {
+			enemy.chaseTarget = enemy.eyesHitInfo.transform;
 		} else {
 			ToAlertState ();
 		}
