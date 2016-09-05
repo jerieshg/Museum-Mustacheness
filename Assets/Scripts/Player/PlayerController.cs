@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterController
 {
 	[Header ("Layers")]
 	public LayerMask collisions;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 	//Other variables
 	private float attackTimeCd = 0f;
 	private bool canAttack;
+	private bool inControl;
 
 	void Start ()
 	{
@@ -41,22 +42,29 @@ public class PlayerController : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody2D> ();
 		playerAnimationController = GetComponent<PlayerAnimationController> ();
 		playerMovementController = new PlayerMovementController (this);
+		this.referenceStats = playerStats;
 	}
 
 	void Update ()
 	{
+		inControl = playerStats.hitpoints > 0;
 		checkPlayerSurroundings ();
 	}
 
 	void FixedUpdate ()
 	{
 		handleAnimations ();
-		playerMovementController.move ();
+
+		if (inControl) {
+			playerMovementController.move ();
+		}
 	}
 
 	public void isThrowing ()
 	{
-		playerAnimationController.throwMarker = true;
+		if (inControl) {
+			playerAnimationController.throwMarker = true;
+		}
 	}
 
 	public void cancelThrow ()
@@ -143,5 +151,6 @@ public class PlayerController : MonoBehaviour
 		playerAnimationController.walk = playerMovementController.walking;
 		playerAnimationController.jump = !playerMovementController.isGround;
 		playerAnimationController.wallSlide = playerMovementController.wallSlide;
+		playerAnimationController.dead = playerStats.hitpoints < 1;
 	}
 }

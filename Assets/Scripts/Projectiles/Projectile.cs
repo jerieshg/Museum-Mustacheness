@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
 	void Awake ()
 	{
-		GetComponent<SpriteRenderer> ().flipX = (direction.x > 0);
+//		GetComponent<SpriteRenderer> ().flipX = (direction.x > 0);
 		circleCol = GetComponent<DrawCircle> ();
 		Destroy (this.gameObject, lifetime);
 	}
@@ -29,8 +29,11 @@ public class Projectile : MonoBehaviour
 	//Checks the collision type, depending on which collision it will interact differently
 	void checkCollisions ()
 	{
-		if(circleCol.hitInfo)
+		if(circleCol.hitInfo )
 		{
+			if (circleCol.hitInfo.collider.CompareTag ("Enemy") || circleCol.hitInfo.collider.CompareTag ("Player")) {
+				circleCol.hitInfo.collider.SendMessage ("takeDamage", 1,SendMessageOptions.DontRequireReceiver);
+			}
 			Instantiate (projectileExplotion, transform.position, Quaternion.identity);
 			Destroy (gameObject);
 		}

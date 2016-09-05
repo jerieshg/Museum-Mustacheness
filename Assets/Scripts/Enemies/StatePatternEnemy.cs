@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Runtime.InteropServices;
 
-public class StatePatternEnemy : MonoBehaviour {
+public class StatePatternEnemy : CharacterController {
 
 
 	[Header("Movement Variables")]
@@ -66,6 +66,7 @@ public class StatePatternEnemy : MonoBehaviour {
 		rigidBody = GetComponent<Rigidbody2D> ();
 		startPosition = transform.position;
 		animationController = GetComponent<EnemyAnimationController> ();
+		this.referenceStats = GetComponent<MobStats> ();
 	}
 
 	void Start () {
@@ -113,7 +114,7 @@ public class StatePatternEnemy : MonoBehaviour {
 	}
 
 	public void Shoot(){
-		bullet.GetComponent<Projectile> ().direction = transform.right * -transform.localScale.x;
+		bullet.GetComponent<Projectile> ().direction = transform.right * transform.localScale.x;
 		Instantiate (bullet, enemyCastPosition.transform.position, enemyCastPosition.transform.rotation);
 	}
 
