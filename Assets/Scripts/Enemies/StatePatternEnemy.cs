@@ -67,12 +67,13 @@ public class StatePatternEnemy : CharacterController {
 		startPosition = transform.position;
 		animationController = GetComponent<EnemyAnimationController> ();
 		this.referenceStats = GetComponent<MobStats> ();
+		currentState = patrolState;
+
+		if (this.animator == null) {
+			this.animator = GetComponent<Animator> ();
+		}
 	}
 
-	void Start () {
-		currentState = patrolState;
-	}
-	
 	void Update () {
 		if (forceChaseState) {
 			currentState = chaseState;
